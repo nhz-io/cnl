@@ -1,7 +1,7 @@
 module.exports =
-  mapper    : require './mapper/index'
+  css2json  : require './css2json'
   Base      : require './base'
-  Event     :  require './event'
+  Event     : require './event'
   Node      : require './node'
   Element   : require './element'
   Style     : require './style'
