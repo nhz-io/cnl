@@ -1,0 +1,1 @@
+window.cnl = require './index'
