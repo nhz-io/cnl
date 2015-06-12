@@ -6,5 +6,3 @@ module.exports =
   Element   : require './element'
   Style     : require './style'
   Shape     : require './shape'
-  Primitive : require './primitive'
-  Composite : require './composite'

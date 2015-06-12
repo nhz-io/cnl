@@ -10,6 +10,4 @@ describe 'lib namespace', ->
   it 'should have an Element constructor', -> lib.Element::constructor.should.be.equal lib.Element
   it 'should have an Style constructor', -> lib.Style::constructor.should.be.equal lib.Style
   it 'should have an Shape constructor', -> lib.Shape::constructor.should.be.equal lib.Shape
-  it 'should have an Primitive constructor', -> lib.Primitive::constructor.should.be.equal lib.Primitive
-  it 'should have an Composite constructor', -> lib.Composite::constructor.should.be.equal lib.Composite
 
