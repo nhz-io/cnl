@@ -2,8 +2,6 @@ should = require 'should'
 lib = require '../../lib/index'
 
 describe 'lib namespace', ->
-  it 'should have a css2json function', -> lib.css2json.should.be.a.Function
-
   it 'should have a Base constructor', -> lib.Base::constructor.should.be.equal lib.Base
   it 'should have an Event constructor', -> lib.Event::constructor.should.be.equal lib.Event
   it 'should have a Node constructor', -> lib.Node::constructor.should.be.equal lib.Node
