@@ -1,10 +1,9 @@
 should = require 'should'
-Node = require '../../lib/node'
 Element = require '../../lib/element'
+baseTest = require '../suite/lib/base'
+nodeTest = require '../suite/lib/node'
+elementTest = require '../suite/lib/element'
 
-describe 'Element', ->
-  it 'should be a class', ->
-    (Object.create Element::).should.be.an.instanceof Element
-
-  it 'should be a subclass of Node', ->
-    Element::.should.be.an.instanceof Node
+baseTest Element, 'Element'
+nodeTest Element, 'Element'
+elementTest Element, 'Element'

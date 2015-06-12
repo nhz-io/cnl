@@ -1,10 +1,13 @@
 should = require 'should'
-Shape = require '../../lib/shape'
 Composite = require '../../lib/composite'
+baseTest = require '../suite/lib/base'
+nodeTest = require '../suite/lib/node'
+elementTest = require '../suite/lib/element'
+shapeTest = require '../suite/lib/shape'
+compositeTest = require '../suite/lib/composite'
 
-describe 'Composite', ->
-  it 'should be a class', ->
-    (Object.create Composite::).should.be.an.instanceof Composite
-
-  it 'should be a subclass of Shape', ->
-    Composite::.should.be.an.instanceof Shape
+baseTest Composite, 'Composite'
+nodeTest Composite, 'Composite'
+elementTest Composite, 'Composite'
+shapeTest Composite, 'Composite'
+compositeTest Composite, 'Composite'
