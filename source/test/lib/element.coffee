@@ -7,3 +7,4 @@ elementTest = require '../suite/lib/element'
 baseTest Element, 'Element'
 nodeTest Element, 'Element'
 elementTest Element, 'Element'
+
