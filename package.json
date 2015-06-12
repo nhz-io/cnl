@@ -52,6 +52,7 @@
     "notest": false
   },
   "dependencies": {
+    "abstract-mapper": "^0.1.5",
     "extends__": "0.0.8"
   }
 }
