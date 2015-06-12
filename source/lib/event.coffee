@@ -8,22 +8,23 @@ module.exports = class Event extends require './base'
 
     {
       @type, @phase,
-      @cancelable, @bubbling,
+      @cancelable, @bubbles,
       @source, @taget,
       @bubbling, @sinking,
-      @stopped, @canceled, @aborted, @done
+      @started, @stopped, @canceled, @aborted, @done
     } = args
 
     date = Date.now()
     perf = performance?.now() or 0
+    @callback = args.callback or callback or ->
     @timestamp = 1000 * date + Math.floor 1000 * (perf - Math.floor perf)
+
+  start: ->
+    @started = yes
+    return this
 
   stop: ->
     @stopped = yes
-    return this
-
-  start: ->
-    @stopped = no
     return this
 
   cancel: ->
@@ -32,4 +33,8 @@ module.exports = class Event extends require './base'
 
   abort: ->
     @aborted = yes
+    return this
+
+  finish: ->
+    @done = yes
     return this
