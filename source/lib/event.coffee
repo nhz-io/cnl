@@ -9,7 +9,7 @@ module.exports = class Event extends require './base'
     {
       @type, @phase,
       @cancelable, @bubbles,
-      @source, @taget,
+      @source, @target,
       @bubbling, @sinking,
       @started, @stopped, @canceled, @aborted, @done
     } = args
