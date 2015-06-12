@@ -27,27 +27,28 @@ module.exports = class Element extends require './node'
     return this
 
   broadcastEvent: (event, target) ->
-    if event instanceof Event and (type = event.type) and not event.aborted
-      event.start()
-      event.source ||= this
-      event.target ||= target
-      phase = (event.phase ||= 1)
+    if event instanceof Event and (type = event.type)
+      unless event.aborted or event.done or event.phase is 3
+        event.start()
+        event.source ||= this
+        event.target ||= target
+        phase = (event.phase ||= 1)
 
-      if event.target is this then event.phase = 2
+        if event.target is this then event.phase = 2
 
-      if event.phase is 1
-        @dispatchEvent event
+        if event.phase is 1
+          @dispatchEvent event
 
-        for child in @children
-          if event.phase is 1 and not event.aborted
-            child.broadcastEvent event
-          else break
+          for child in @children
+            if event.phase is 1 and not event.aborted
+              child.broadcastEvent event
+            else break
 
-      if event.phase is 2 then @dispatchEvent event
+        if event.phase is 2 then @dispatchEvent event
 
-      if event.source is this
-        unless event.canceled or event.aborted or event.phase is 3
-          event.callback?.call this, event
-        event.phase = 3
-        event.finish()
+        if event.source is this
+          unless event.canceled or event.aborted or event.done or event.phase is 3
+            event.callback?.call this, event
+          event.phase = 3
+          event.finish()
     return this
