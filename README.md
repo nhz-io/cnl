@@ -45,6 +45,8 @@ VERSION
 [npm-image]: https://nodei.co/npm/cnl
 [npm-url]: https://nodei.co/npm/cnl
 
+[jsperf-url]: http://jsperf.com/cnl
+
 [dist-browser-js-url]: https://github.com/nhz-io/cnl.js
 [min-dist-browser-js-url]: https://github.com/nhz-io/cnl.min.js
 [pack-min-dist-browser-js-url]: https://github.com/nhz-io/cnl.pack.min.js
