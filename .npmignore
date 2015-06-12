@@ -6,6 +6,8 @@ build/
 .editorconfig
 .travis*
 .npmignore
+cnl.js
+cnl.*.js
 History.md
 gulpfile.*
 coffeelint.*
