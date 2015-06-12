@@ -45,7 +45,7 @@ VERSION
 [travis-image]: https://travis-ci.org/nhz-io/cnl.svg
 [travis-url]: https://travis-ci.org/nhz-io/cnl
 
-[npm-image]: https://nodei.co/npm/cnl
+[npm-image]: https://nodei.co/npm/cnl.png
 [npm-url]: https://nodei.co/npm/cnl
 
 [jsperf-url]: http://jsperf.com/cnl
