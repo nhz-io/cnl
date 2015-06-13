@@ -37,7 +37,7 @@ LICENSE
 VERSION
 -------
 #### 0.0.2
-*
+* Added structural classes
 
 #### 0.0.1
 * Initial commit
