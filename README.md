@@ -36,7 +36,7 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.4
+#### 0.0.5
 * Added pens
 
 #### 0.0.2
@@ -53,6 +53,6 @@ VERSION
 
 [jsperf-url]: http://jsperf.com/cnl
 
-[dist-browser-js-url]: https://github.com/nhz-io/cnl.js
-[min-dist-browser-js-url]: https://github.com/nhz-io/cnl.min.js
-[pack-min-dist-browser-js-url]: https://github.com/nhz-io/cnl.pack.min.js
+[dist-browser-js-url]: cnl.js
+[min-dist-browser-js-url]: cnl.min.js
+[pack-min-dist-browser-js-url]: cnl.pack.min.js
