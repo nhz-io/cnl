@@ -36,6 +36,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.9
+* Added origin and size to Shape
+
 #### 0.0.8
 * Added Shape style
 

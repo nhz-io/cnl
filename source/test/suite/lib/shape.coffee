@@ -14,6 +14,8 @@ module.exports = (Test, name = 'Shape') ->
     describe '#constructor()', -> it 'should return an instance of Shape', -> (new Test).should.be.an.instanceof Test
 
     describe 'instance', ->
+      it 'should have an origin property', -> (new Test).origin.should.be.an.Object
+      it 'should have a size property', -> (new Test).size.should.be.an.Object
       it 'should have a draw() method', -> (new Test).render.should.be.a.Function
 
       describe '#draw()', ->
