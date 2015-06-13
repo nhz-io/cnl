@@ -1,11 +1,11 @@
 module.exports = class Style extends require './base'
   constructor: (args = {}) ->
     super
-    @mapper = args.mapper or @mapper
+    @mapper = args.mapper if args.mapper
     @data = args.data or {}
 
   load: (json, callback) ->
-    if json then mapper json, @data, callback
+    if json then @mapper json, @data, callback
     return this
 
   get: (keys...) ->

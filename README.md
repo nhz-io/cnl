@@ -36,6 +36,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.7
+* Added Shape style
+
 #### 0.0.6
 * Added pens
 
