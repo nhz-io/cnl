@@ -4,10 +4,10 @@ Event = require './event'
 module.exports = class Element extends require './evented'
   constructor: (args = {}) ->
     super
-    @_style = if args.style instanceof Style then args.style else @_style
-    @_state = args.state
-    @addEventListener 'state', (e) => @stateChangleListener e
-    @addEventListener 'style', (e) => @stateChangleListener e
+    @_style = args.style or @_style
+    @_state = args.state or @_state
+    @addEventListener 'state', (e) => @stateListener e
+    @addEventListener 'style', (e) => @styleListener e
     @addEventListener 'render', (e) => @renderListener e
 
   stateListener: ->

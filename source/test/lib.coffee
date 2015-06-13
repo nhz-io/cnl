@@ -18,3 +18,6 @@ test require '../lib/style'
 
 test = require './suite/lib/shape'
 test require '../lib/shape'
+
+test = require './suite/lib/component'
+test require '../lib/component'
