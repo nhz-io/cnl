@@ -36,7 +36,7 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.7
+#### 0.0.8
 * Added Shape style
 
 #### 0.0.6

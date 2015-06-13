@@ -24,11 +24,15 @@ module.exports = class Shape extends require '../lib/style'
       else
         repeat = null
 
+      fill = null
+
       (image = new Image).src = url[2]
-      image.onload =>
+      image.onload = =>
         context.fill = document.createElement('canvas').getContext '2d'
           .createPattern image, repeat or 'repeat'
         callback?.call this, null, context
+
+      image.onerror = (e) => callback?.call this, e, context
 
     else
       callback?.call this, null, context
