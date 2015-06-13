@@ -12,3 +12,10 @@ module.exports = class Shape extends require './element'
   draw: (context, args) ->
     @broadcastEvent new Event type:'draw', target:this
     return this
+
+  style: (value) ->
+    if value instanceof cnl.lib.Style
+      @update style:value.get()
+      return super
+    super()
+
