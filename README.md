@@ -36,6 +36,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.16
+* Removed event instanceof Event check on Evented class methods
+
 #### 0.0.15
 * Added missing font setter in TextPen
 

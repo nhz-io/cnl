@@ -19,7 +19,7 @@ module.exports = class Evented extends require './node'
     return this
 
   dispatchEvent: (event) ->
-    if event instanceof Event and (type = event.type) and not event.aborted
+    if (type = event?.type) and not event.aborted
       phase = event.phase
       if phase > 0 and phase < 3 and listeners = @listeners[2-phase][type]
         event.start()
@@ -28,8 +28,8 @@ module.exports = class Evented extends require './node'
           listener.call this, event
     return this
 
-  broadcastEvent: (event, target) ->
-    if event instanceof Event and (type = event.type)
+  broadcastEvent: (event , target) ->
+    if type = event?.type
       unless event.aborted or event.done or event.phase is 3
         event.start()
         event.source ||= this
