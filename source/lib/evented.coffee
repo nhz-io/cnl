@@ -5,12 +5,14 @@ module.exports = class Evented extends require './node'
     @listeners = [{}, {}]
 
   addEventListener: (type, listener, capture = false) ->
+    if type instanceof Object then {type, listener, capture} = type
     if type and typeof listener is 'function'
       listeners = (@listeners[if capture is true then 1 else 0][type] ||= [])
       listeners.push listener if -1 is listeners.indexOf listener
     return this
 
   removeEventListener: (type, listener, capture = false) ->
+    if type instanceof Object then {type, listener, capture} = type
     if type and typeof listener is 'function'
       if listeners = @listeners[if capture is true then 1 else 0][type]
         listeners.splice idx, 1 if -1 isnt idx = listeners.indexOf listener

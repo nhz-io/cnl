@@ -34,8 +34,18 @@ module.exports = (Test, name = 'Evented') ->
         it 'should add event listener to bubbling listeners (default)', ->
           (test = new Test).addEventListener('test', (listener = ->)).listeners[0].test[0].should.be.equal listener
 
+        it 'should add event listener to bubbling listeners (default) (arguments as object)', ->
+          (test = new Test)
+            .addEventListener type:'test', listener:(listener = ->)
+            .listeners[0].test[0].should.be.equal listener
+
         it 'should add event listener to capturing listeners', ->
           (test = new Test).addEventListener('test', (listener = ->), yes).listeners[1].test[0].should.be.equal listener
+
+        it 'should add event listener to capturing listeners (arguments as object)', ->
+          (test = new Test)
+            .addEventListener type:'test', listener:(listener = ->), capture:yes
+            .listeners[1].test[0].should.be.equal listener
 
         it 'should not add duplicates', ->
           (test = new Test)
@@ -54,16 +64,29 @@ module.exports = (Test, name = 'Evented') ->
 
       describe '#removeEventListener(type, listener, capture = false)', ->
         it 'should return the element', -> (test = new Test).removeEventListener().should.be.equal test
+
         it 'should remove event listener from bubbling listeners (default)', ->
           (test = new Test)
             .addEventListener('test', (listener = ->))
             .removeEventListener('test', listener)
             .listeners[0].test.length.should.be.equal 0
 
+        it 'should remove event listener from bubbling listeners (default) (arguments as object)', ->
+          (test = new Test)
+            .addEventListener('test', (listener = ->))
+            .removeEventListener type:'test', listener:listener
+            .listeners[0].test.length.should.be.equal 0
+
         it 'should remove event listener from capturing listeners', ->
           (test = new Test)
             .addEventListener('test', (listener = ->), yes)
             .removeEventListener('test', listener, yes)
+            .listeners[1].test.length.should.be.equal 0
+
+        it 'should remove event listener from capturing listeners (arguments as object)', ->
+          (test = new Test)
+            .addEventListener('test', (listener = ->), yes)
+            .removeEventListener type:'test', listener:listener, capture:yes
             .listeners[1].test.length.should.be.equal 0
 
       describe '#dispatchEvent(event)', ->
