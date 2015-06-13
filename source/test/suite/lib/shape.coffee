@@ -20,6 +20,3 @@ module.exports = (Test, name = 'Shape') ->
 
       describe '#draw()', ->
         it 'should return the shape', -> (test = new Test).draw().should.be.equal test
-
-      describe '#update()', ->
-        it 'should return the shape', -> (test = new Test).update().should.be.equal test

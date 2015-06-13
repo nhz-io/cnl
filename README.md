@@ -36,6 +36,10 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.14
+* Removed style and state from Element and Shape
+* Added update to Element and removed from Shape
+
 #### 0.0.13
 * Added origin and size to Shape
 * Added style method to Shape

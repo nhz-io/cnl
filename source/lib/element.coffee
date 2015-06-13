@@ -6,29 +6,16 @@ module.exports = class Element extends require './evented'
     super
     @_style = args.style or @_style
     @_state = args.state or @_state
-    @addEventListener 'state', (e) => @stateListener e
-    @addEventListener 'style', (e) => @styleListener e
+    @addEventListener 'update', (e) => @updateListener e
     @addEventListener 'render', (e) => @renderListener e
 
-  stateListener: ->
-
-  styleListener: ->
+  updateListener: ->
 
   renderListener: ->
 
-  state: (value) ->
-    if arguments.length
-      state = @_state
-      @_state = value
-      @broadcastEvent new Event type:'state', target:this, value:value, old:state
-    return @_state
-
-  style: (value) ->
-    if arguments.length
-      style = @_state
-      @_style = value
-      @broadcastEvent new Event type:'style', target:this, value:value, old:style
-    return @_style
+  update: ->
+    @broadcastEvent new Event type:'update', target:this
+    return this
 
   render: (context, args) ->
     @broadcastEvent new Event type:'render', target:this
