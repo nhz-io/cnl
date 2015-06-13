@@ -1,10 +1,19 @@
-parallel = require 'nhz.lib/dist/async/parallel'
 module.exports = class Style extends require './base'
   constructor: (args = {}) ->
-    {@json} = args
+    @mapper = args.mapper or @mapper
+    @data = args.data or {}
 
-  load:(json..., callback) ->
-    @json = json[0] or @json or {}
+  load: (json, callback) ->
+    if json then mapper json, @data, callback
+    return this
 
+  get: (keys...) ->
+    return @data unless length = keys.length
 
-  toJSON: -> @json
+    result = []
+    if length is 1 and keys[0] instanceof Array then keys = keys[0]
+    for key in keys then result.push @data[key] if @data[key]?
+
+    return (if result.length is 1 then result[0] else result)
+
+  mapper: (data, context, callback) -> callback()
