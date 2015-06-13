@@ -1,4 +1,4 @@
-lib = require '../lib'
+lib = require '../lib/index'
 
 test = require './suite/lib/base'
 test lib.Base
@@ -23,3 +23,6 @@ test lib.Shape
 
 test = require './suite/lib/component'
 test lib.Component
+
+test = require './suite/lib/pen'
+test lib.Pen

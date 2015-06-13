@@ -36,6 +36,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.3
+* Added pens
+
 #### 0.0.2
 * Added structural classes
 

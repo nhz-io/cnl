@@ -7,3 +7,4 @@ module.exports =
   Style     : require './style'
   Shape     : require './shape'
   Component : require './component'
+  Pen       : require './pen'
