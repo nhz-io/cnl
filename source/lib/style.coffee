@@ -1,5 +1,6 @@
 module.exports = class Style extends require './base'
   constructor: (args = {}) ->
+    super
     @mapper = args.mapper or @mapper
     @data = args.data or {}
 

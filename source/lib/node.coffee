@@ -1,5 +1,6 @@
 module.exports = class Node extends require './base'
   constructor: (args = {}) ->
+    super
     @children = args.children or []
     @parent = args.parent or null
 

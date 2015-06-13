@@ -1,5 +1,6 @@
 module.exports = class Event extends require './base'
   constructor: (args = {}, callback) ->
+    super
     if typeof args is 'string'
       args = type:args
     else if (arguments.length < 2) and typeof args is 'function'
