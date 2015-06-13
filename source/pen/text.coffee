@@ -23,6 +23,8 @@ module.exports = class Line extends require '../lib/pen'
         context.translate origin.x, origin.y
         origin.x = origin.y = 0
 
+      if font then context.font = font
+
       if fill
         context.fillStyle = fill
         context.fillText text, origin.x, origin.y

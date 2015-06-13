@@ -1,6 +1,6 @@
 {
   "name": "cnl",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "CNL",
   "main": "dist/index.js",
   "scripts": {

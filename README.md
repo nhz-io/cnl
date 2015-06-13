@@ -36,6 +36,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.15
+* Added missing font setter in TextPen
+
 #### 0.0.14
 * Removed style and state from Element and Shape
 * Added update to Element and removed from Shape
