@@ -36,7 +36,7 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.11
+#### 0.0.12
 * Added origin and size to Shape
 * Added style method to Shape
 * Added update method to Shape

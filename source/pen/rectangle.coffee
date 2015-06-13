@@ -1,6 +1,7 @@
 module.exports = class Rectangle extends require '../lib/pen'
   constructor: (args = {}) ->
     @size = args.size or width:0, height:0
+    @origin = args.origin
     {@fill, @stroke, @lineWidth} = args
     return super
 
