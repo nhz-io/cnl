@@ -19,8 +19,8 @@ module.exports = class Line extends require '../lib/pen'
 
       if stroke then context.beginPath()
 
-      context.moveTo.apply context, start
-      context.lineTo.apply context, end
+      context.moveTo start.x, start.y
+      context.lineTo end.x, end.y
 
       if stroke
         context.strokeStyle = stroke

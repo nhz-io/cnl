@@ -21,10 +21,10 @@ module.exports = class Rectangle extends require '../lib/pen'
           origin.x = origin.y = 0
 
         context.beginPath()
-        context.moveTo.apply context, origin
-        context.lineTo origin[0]+size[0], origin[1]
-        context.lineTo origin[0]+size[0], origin[1]+size[1]
-        context.lineTo origin[0], origin[1]+size[1]
+        context.moveTo origin.x, origin.y
+        context.lineTo origin.x+size.width, origin.y
+        context.lineTo origin.x+size.width, origin.y+size.height
+        context.lineTo origin.x, origin.y+size.height
         context.lineTo.apply context, origin
 
       if fill
