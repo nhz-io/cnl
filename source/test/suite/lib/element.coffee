@@ -14,8 +14,9 @@ module.exports = (Test, name = 'Element') ->
     describe '#constructor()', -> it 'should return an instance of Element', -> (new Test).should.be.an.instanceof Test
 
     describe 'instance', ->
+      it 'should have a style property', -> (new Test).should.have.property 'style'
 
-      describe '#property', ->
+      it 'should have render() method', -> (new Test).render.should.be.a.Function
 
       describe '#method()', ->
-        it 'should return the element', -> (test = new Test).addEventListener().should.be.equal test
+        it 'should return the element', -> (test = new Test).render().should.be.equal test
