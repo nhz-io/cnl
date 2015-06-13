@@ -15,7 +15,9 @@ module.exports = class Line extends require '../lib/pen'
 
       if lineWidth % 2
         start.x += 0.5
+        start.y += 0.5
         end.x += 0.5
+        end.y += 0.5
 
       if stroke then context.beginPath()
 

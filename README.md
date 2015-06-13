@@ -36,7 +36,7 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.5
+#### 0.0.6
 * Added pens
 
 #### 0.0.2

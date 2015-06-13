@@ -12,29 +12,26 @@ module.exports = class Rectangle extends require '../lib/pen'
       stroke = args.stroke or @stroke
       lineWidth = args.lineWidth or @lineWidth
 
-      if lineWidth % 2 then origin.x += 0.5
+      if lineWidth % 2
+        origin.x += 0.5
+        origin.y += 0.5
+
+      if fill instanceof Object
+        context.save()
+        context.translate origin.x, origin.y
+        origin.x = origin.y = 0
 
       if fill or stroke
-        if fill instanceof Object
-          context.save()
-          context.translate origin.x, origin.y
-          origin.x = origin.y = 0
-
         context.beginPath()
-        context.moveTo origin.x, origin.y
-        context.lineTo origin.x+size.width, origin.y
-        context.lineTo origin.x+size.width, origin.y+size.height
-        context.lineTo origin.x, origin.y+size.height
-        context.lineTo.apply context, origin
 
       if fill
         context.fillStyle = fill
-        context.fill()
+        context.fillRect origin.x, origin.y, size.width, size.height
 
       if stroke
         context.strokeStyle = stroke
-        context.lineWidth = lineWidth or 1
-        context.stroke()
+        context.lineWidth = lineWidth if lineWidth
+        context.strokeRect origin.x, origin.y, size.width, size.height
 
       if fill instanceof Object
         context.restore()
