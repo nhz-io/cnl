@@ -42,7 +42,7 @@ module.exports = class Evented extends require './node'
         if event.phase is 1
           @dispatchEvent event
 
-          for child in @children
+          if @children then for child in @children
             if event.phase is 1 and not event.aborted
               child.broadcastEvent event
             else break
