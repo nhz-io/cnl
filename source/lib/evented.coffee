@@ -1,7 +1,8 @@
 Event = require './event'
 module.exports = class Evented extends require './node'
-  constructor: ->
+  constructor: (args) ->
     super
+    (@events ||= {}) and @events[key] = value for key, value of args?.events
     @listeners = [{}, {}]
 
   addListener: (type, listener, capture = false) ->
