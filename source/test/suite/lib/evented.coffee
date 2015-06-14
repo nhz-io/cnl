@@ -17,8 +17,8 @@ module.exports = (Test, name = 'Evented') ->
 
     describe 'instance', ->
       it 'should have listeners property', -> (new Test).should.have.property 'listeners'
-      it 'should have addEventListener() method', -> (new Test).addEventListener.should.be.a.Function
-      it 'should have removeEventListener() method', -> (new Test).removeEventListener.should.be.a.Function
+      it 'should have addListener() method', -> (new Test).addListener.should.be.a.Function
+      it 'should have removeListener() method', -> (new Test).removeListener.should.be.a.Function
       it 'should have dispatchEvent() method', -> (new Test).dispatchEvent.should.be.a.Function
       it 'should have broadcastEvent() method', -> (new Test).broadcastEvent.should.be.a.Function
 
@@ -28,65 +28,65 @@ module.exports = (Test, name = 'Evented') ->
           (new Test).listeners[0].should.be.an.Object
           (new Test).listeners[1].should.be.an.Object
 
-      describe '#addEventListener(type, listener, capture = false)', ->
-        it 'should return the element', -> (test = new Test).addEventListener().should.be.equal test
+      describe '#addListener(type, listener, capture = false)', ->
+        it 'should return the element', -> (test = new Test).addListener().should.be.equal test
 
         it 'should add event listener to bubbling listeners (default)', ->
-          (test = new Test).addEventListener('test', (listener = ->)).listeners[0].test[0].should.be.equal listener
+          (test = new Test).addListener('test', (listener = ->)).listeners[0].test[0].should.be.equal listener
 
         it 'should add event listener to bubbling listeners (default) (arguments as object)', ->
           (test = new Test)
-            .addEventListener type:'test', listener:(listener = ->)
+            .addListener type:'test', listener:(listener = ->)
             .listeners[0].test[0].should.be.equal listener
 
         it 'should add event listener to capturing listeners', ->
-          (test = new Test).addEventListener('test', (listener = ->), yes).listeners[1].test[0].should.be.equal listener
+          (test = new Test).addListener('test', (listener = ->), yes).listeners[1].test[0].should.be.equal listener
 
         it 'should add event listener to capturing listeners (arguments as object)', ->
           (test = new Test)
-            .addEventListener type:'test', listener:(listener = ->), capture:yes
+            .addListener type:'test', listener:(listener = ->), capture:yes
             .listeners[1].test[0].should.be.equal listener
 
         it 'should not add duplicates', ->
           (test = new Test)
-            .addEventListener('test', (listener = ->))
-            .addEventListener('test', listener)
+            .addListener('test', (listener = ->))
+            .addListener('test', listener)
             .listeners[0].test.length.should.be.equal 1
 
           (test = new Test)
-            .addEventListener('test', (listener = ->), yes)
-            .addEventListener('test', listener, yes)
+            .addListener('test', (listener = ->), yes)
+            .addListener('test', listener, yes)
             .listeners[1].test.length.should.be.equal 1
 
         it 'should add only functions', ->
-          (test = new Test).addEventListener('test', {}).listeners[0].should.not.have.property 'test'
-          (test = new Test).addEventListener('test', {}, yes).listeners[1].should.not.have.property 'test'
+          (test = new Test).addListener('test', {}).listeners[0].should.not.have.property 'test'
+          (test = new Test).addListener('test', {}, yes).listeners[1].should.not.have.property 'test'
 
-      describe '#removeEventListener(type, listener, capture = false)', ->
-        it 'should return the element', -> (test = new Test).removeEventListener().should.be.equal test
+      describe '#removeListener(type, listener, capture = false)', ->
+        it 'should return the element', -> (test = new Test).removeListener().should.be.equal test
 
         it 'should remove event listener from bubbling listeners (default)', ->
           (test = new Test)
-            .addEventListener('test', (listener = ->))
-            .removeEventListener('test', listener)
+            .addListener('test', (listener = ->))
+            .removeListener('test', listener)
             .listeners[0].test.length.should.be.equal 0
 
         it 'should remove event listener from bubbling listeners (default) (arguments as object)', ->
           (test = new Test)
-            .addEventListener('test', (listener = ->))
-            .removeEventListener type:'test', listener:listener
+            .addListener('test', (listener = ->))
+            .removeListener type:'test', listener:listener
             .listeners[0].test.length.should.be.equal 0
 
         it 'should remove event listener from capturing listeners', ->
           (test = new Test)
-            .addEventListener('test', (listener = ->), yes)
-            .removeEventListener('test', listener, yes)
+            .addListener('test', (listener = ->), yes)
+            .removeListener('test', listener, yes)
             .listeners[1].test.length.should.be.equal 0
 
         it 'should remove event listener from capturing listeners (arguments as object)', ->
           (test = new Test)
-            .addEventListener('test', (listener = ->), yes)
-            .removeEventListener type:'test', listener:listener, capture:yes
+            .addListener('test', (listener = ->), yes)
+            .removeListener type:'test', listener:listener, capture:yes
             .listeners[1].test.length.should.be.equal 0
 
       describe '#dispatchEvent(event)', ->
@@ -95,9 +95,9 @@ module.exports = (Test, name = 'Evented') ->
           count = 0
           (event = new Event 'test').phase = 2
           (new Test)
-            .addEventListener 'test', -> count++
-            .addEventListener 'test', -> count++
-            .addEventListener 'test', -> count++
+            .addListener 'test', -> count++
+            .addListener 'test', -> count++
+            .addListener 'test', -> count++
             .dispatchEvent event
           count.should.be.equal 3
 
@@ -105,9 +105,9 @@ module.exports = (Test, name = 'Evented') ->
           count = 0
           (event = new Event 'test').phase = 1
           (new Test)
-            .addEventListener 'test', (-> count++), yes
-            .addEventListener 'test', (-> count++), yes
-            .addEventListener 'test', (-> count++), yes
+            .addListener 'test', (-> count++), yes
+            .addListener 'test', (-> count++), yes
+            .addListener 'test', (-> count++), yes
             .dispatchEvent event
           count.should.be.equal 3
 
@@ -116,8 +116,8 @@ module.exports = (Test, name = 'Evented') ->
           event = new Event 'test'
           test = new Test
           test
-            .addEventListener 'test', (-> pass = no)
-            .addEventListener 'test', (-> pass = no), yes
+            .addListener 'test', (-> pass = no)
+            .addListener 'test', (-> pass = no), yes
             .dispatchEvent event
           pass.should.be.ok
 
@@ -131,8 +131,8 @@ module.exports = (Test, name = 'Evented') ->
           event.abort()
           test = new Test
           test
-            .addEventListener 'test', (-> pass = no)
-            .addEventListener 'test', (-> pass = no), yes
+            .addListener 'test', (-> pass = no)
+            .addListener 'test', (-> pass = no), yes
             .dispatchEvent event
           pass.should.be.ok
 
@@ -146,8 +146,8 @@ module.exports = (Test, name = 'Evented') ->
           event = new Event 'test'
           event.phase = 1
           test
-            .addEventListener 'test', ((e) -> pass = e.started is yes)
-            .addEventListener 'test', ((e) -> pass = e.started is yes), yes
+            .addListener 'test', ((e) -> pass = e.started is yes)
+            .addListener 'test', ((e) -> pass = e.started is yes), yes
             .dispatchEvent event
           pass.should.be.ok
           pass = no

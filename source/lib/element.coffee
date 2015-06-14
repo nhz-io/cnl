@@ -6,8 +6,8 @@ module.exports = class Element extends require './evented'
     super
     @_style = args.style or @_style
     @_state = args.state or @_state
-    @addEventListener 'update', (e) => @updateListener e
-    @addEventListener 'render', (e) => @renderListener e
+    @addListener 'update', @updateListener, yes
+    @addListener 'render', @renderListener, yes
 
   updateListener: ->
 
