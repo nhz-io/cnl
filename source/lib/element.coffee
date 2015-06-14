@@ -35,11 +35,11 @@ module.exports = class Element extends require './evented'
     localizeEventCoordinates event, @origin
     return this
 
-  mousedownListener: (event) -> this
+  mousedownListener: -> this
 
-  mouseupListener: (event) -> this
+  mouseupListener: -> this
 
-  mousemoveListener: (event) -> this
+  mousemoveListener: -> this
 
   update: (args) ->
     if @events?.update then @broadcastEvent new Event
