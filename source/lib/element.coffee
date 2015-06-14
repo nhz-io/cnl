@@ -48,7 +48,8 @@ module.exports = class Element extends require './evented'
       type:'update', target:this, args:args
     return this
 
-  render: (context, args) ->
+  render: (context) ->
     if @events?.render then @broadcastEvent new Event
       type:'render', target:this, context:context, args:args
+    if children = @children then (child.render context for child in children)
     return this
