@@ -1,5 +1,12 @@
 Event = require './event'
 
+findZones = (zones, x, y) ->
+  result = {}
+  result[name] = $ for name, $ of zones when (
+    $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
+  )
+  return result
+
 module.exports = class Shape extends require './element'
   constructor: (args = {}) ->
     super
@@ -8,33 +15,22 @@ module.exports = class Shape extends require './element'
     for name in ['draw']
       do (name) => @addListener name, ((e) -> e.stop() unless @events?[name]), yes
 
-    for name in ['mousemove', 'mousedown', 'mouseup']
-      do (name) => @addListener name, this["#{name}Listener"], yes
-
   mousemoveListener: (event) ->
-    if (type = event.type) and @events?[type]
-      event.zones = @getZones event.x, event.y
+    super
+    event.zones = findZones @zones, event.localX, event.localY
+    return this
 
-  mousedownListener: ->
-    if (type = event.type) and @events[type]
-      event.zones = @getZones event.x, event.y
+  mousedownListener: (event) ->
+    super
+    event.zones = findZones @zones, event.localX, event.localY
+    return this
 
-  mouseupListener: ->
-    if (type = event.type) and @events[type]
-      event.zones = @getZones event.x, event.y
+  mouseupListener: (event) ->
+    super
+    event.zones = findZones @zones, event.localX, event.localY
+    return this
 
   draw: (context, args) ->
     if @events?.draw then @broadcastEvent new Event
       type:'draw', target:this, context:context, args:args
     return this
-
-  getZones: (x, y, zones = @zones) ->
-    result = {}
-    if @origin
-      x -= @origin.x or 0
-      y -= @origin.y or 0
-
-    result[name] = $ for name, $ of zones when (
-      $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
-    )
-    return result
