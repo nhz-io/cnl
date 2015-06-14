@@ -12,22 +12,24 @@ module.exports = class Element extends require './evented'
     (@states ||= {}) and @states[key] = value for key, value of args.states
 
     for name in ['mousemove', 'mousedown', 'mouseup', 'update', 'render']
-      do (name) => @addListener name, ((e) -> e.stop() unless @events?[name]), yes
+      do (name) =>
+        @addListener name, ((e) -> e.stop() unless @events?[name]), yes
+        @addListener name, ((e) -> e.stop() unless @events?[name]), no
 
     for name in ['mousemove', 'mousedown', 'mouseup']
-      do (name) => @addListener name, this["#{name}Listener"], yes
+      @addListener name, this["#{name}CaptureListener"], yes
 
-  mousemoveListener: (event) ->
+  mousemoveCaptureListener: (event) ->
     @___runtime.mousemoveEvent = event
     localizeEventCoordinates event, @origin
     return this
 
-  mousedownListener: (event) ->
+  mousedownCaptureListener: (event) ->
     @___runtime.mousedownEvent = event
     localizeEventCoordinates event, @origin
     return this
 
-  mouseupListener: (event) ->
+  mouseupCaptureListener: (event) ->
     @___runtime.mouseupEvent = event
     localizeEventCoordinates event, @origin
     return this
