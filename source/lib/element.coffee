@@ -7,7 +7,9 @@ localizeEventCoordinates = (event, origin) ->
 module.exports = class Element extends require './evented'
   constructor: (args = {}) ->
     super
-    this[key] = args[key] if args[key] for key in ['origin', 'size', 'state', 'style']
+    for key in ['origin', 'size', 'state', 'style']
+      this[key] = args[key] if args[key]
+
     (@styles ||= {}) and @styles[key] = value for key, value of args.styles
     (@states ||= {}) and @states[key] = value for key, value of args.states
 
