@@ -15,10 +15,18 @@ module.exports = class Component extends require './shape'
     super
     $ = @___runtime
     if $.grab
+      @state = 'active'
       @broadcastEvent $.dragEvent = new Event type:'drag',
         x:event.x, y:event.y, target:this
-        offsetX: x - ($.dragEvent?.x or $.grabEvent?.x or 0)
-        offsetY: y - ($.dragEvent?.y or $.grabEvent?.y or 0)
+        offsetX: event.x - ($.dragEvent?.x or $.grabEvent?.x or 0)
+        offsetY: event.y - ($.dragEvent?.y or $.grabEvent?.y or 0)
+    else
+      @state = null
+      if zones = @zones
+        for name in ['hover', 'normal'] when zones[name]
+          @state = name
+          break
+
     return this
 
   mousedownListener: (event) ->
