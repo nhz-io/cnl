@@ -18,6 +18,7 @@ module.exports = class Element extends require './evented'
 
     for name in ['mousemove', 'mousedown', 'mouseup']
       @addListener name, this["#{name}CaptureListener"], yes
+      @addListener name, this["#{name}Listener"], no
 
   mousemoveCaptureListener: (event) ->
     @___runtime.mousemoveEvent = event
@@ -33,6 +34,12 @@ module.exports = class Element extends require './evented'
     @___runtime.mouseupEvent = event
     localizeEventCoordinates event, @origin
     return this
+
+  mousedownListener: (event) -> this
+
+  mouseupListener: (event) -> this
+
+  mousemoveListener: (event) -> this
 
   update: (args) ->
     if @events?.update then @broadcastEvent new Event
