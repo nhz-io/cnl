@@ -47,6 +47,8 @@ module.exports = class Evented extends require './node'
               child.broadcastEvent event
             else break
 
+        if event.target is this then event.phase = 2
+
         if event.phase is 2 then @dispatchEvent event
 
         if event.source is this
