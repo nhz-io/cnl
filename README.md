@@ -36,7 +36,7 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.18
+#### 0.0.19
 * lots of refactoring
 * renamed addEventListener to addListener
 * renamed removeEventListener to listener

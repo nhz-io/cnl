@@ -36,5 +36,3 @@ module.exports = class Rectangle extends require '../lib/pen'
 
       if fill instanceof Object
         context.restore()
-
-    super

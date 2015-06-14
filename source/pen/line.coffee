@@ -28,5 +28,3 @@ module.exports = class Line extends require '../lib/pen'
         context.strokeStyle = stroke
         context.lineWidth = lineWidth if lineWidth
         context.stroke()
-
-    super
