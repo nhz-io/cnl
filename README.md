@@ -36,12 +36,13 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.20
+#### 0.0.21
 * lots of refactoring
 * renamed addEventListener to addListener
 * renamed removeEventListener to listener
 * lighter classes
 * state logic fixes
+* evented fixes
 
 #### 0.0.16
 * Removed event instanceof Event check on Evented class methods

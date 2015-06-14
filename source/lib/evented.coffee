@@ -53,7 +53,7 @@ module.exports = class Evented extends require './node'
 
         if event.source is this
           unless event.canceled or event.aborted or event.done or event.phase is 3
-            event.callback?.call this, event
+            event.callback?.call? this, event
           event.phase = 3
           event.finish()
     return this
