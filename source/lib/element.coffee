@@ -1,5 +1,9 @@
 Event = require './event'
 
+defaultMouseEventListener = (event) ->
+  event.localX = (if event.localX? then event.localX else event.x) - (@origin?.x or 0)
+  event.localY = (if event.localY? then event.localY else event.y) - (@origin?.y or 0)
+
 module.exports = class Element extends require './evented'
   constructor: (args = {}) ->
     super
@@ -9,6 +13,15 @@ module.exports = class Element extends require './evented'
 
     for name in ['mousemove', 'mousedown', 'mouseup', 'update', 'render']
       do (name) => @addListener name, ((e) -> e.stop() unless @events?[name]), yes
+
+    for name in ['mousemove', 'mousedown', 'mouseup']
+      do (name) => @addListener name, this["#{name}Listener"], yes
+
+  mousemoveListener: defaultMouseEventListener
+
+  mousedownListener: defaultMouseEventListener
+
+  mouseupListener: defaultMouseEventListener
 
   update: (args) ->
     if @events?.update then @broadcastEvent new Event
