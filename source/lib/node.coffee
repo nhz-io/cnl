@@ -1,18 +1,21 @@
 module.exports = class Node extends require './base'
   constructor: (args = {}) ->
     super
-    @children = args.children or []
-    @parent = args.parent or null
+    args.children and @children = args.children
+    args.parent and @parent = args.parent
 
   appendChild: (child) ->
-    if child instanceof Node and -1 is @children.indexOf child
-      if parent = child.parent then parent.removeChild child
-      child.parent = this
-      @children.push child
+    if child instanceof Node and (@children ||= [])
+      if -1 is @children.indexOf child
+        child.parent?.removeChild? child
+        child.parent = this
+        @children.push child
     return this
 
   removeChild: (child) ->
-    if child instanceof Node and -1 isnt idx = @children.indexOf child
-      child.parent = null
-      @children.splice idx, 1
+    if child instanceof Node and @children
+      if -1 isnt idx = @children.indexOf child
+        delete child.parent
+        @children.splice idx, 1
+      delete @children if @children.length is 0
     return this

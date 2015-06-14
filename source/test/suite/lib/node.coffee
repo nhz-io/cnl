@@ -15,14 +15,9 @@ module.exports = (Test, name = 'Node') ->
       (new Test).should.be.an.instanceof Test
 
     describe 'instance', ->
-      it 'should have parent property', -> (new Test).should.have.property 'parent'
-      it 'should have children property', -> (new Test).should.have.property 'children'
 
       it 'should have appendChild() method', -> (new Test).appendChild.should.be.a.Function
       it 'should have removeChild() method', -> (new Test).removeChild.should.be.a.Function
-
-      describe '#children', ->
-        it 'should be an empty array', -> (new Test).children.length.should.be.equal 0
 
       describe '#appendChild(child)', ->
         it 'should return the node', -> (test = new Test).appendChild({}).should.be.equal test
@@ -31,7 +26,7 @@ module.exports = (Test, name = 'Node') ->
           (parent = new Test).appendChild(child = new Test).children[0].should.be.equal child
 
         it 'should only add an instances of Test (or any subclass)', ->
-          (parent = new Test).appendChild({}).children.length.should.be.equal 0
+          (parent = new Test).appendChild({}).should.not.have.property 'children'
 
         it 'should not add duplicates', ->
           (parent = new Test).appendChild(child = new Test).appendChild(child).children.length.should.be.equal 1
@@ -39,9 +34,9 @@ module.exports = (Test, name = 'Node') ->
         it 'should remove the child from its parent', ->
           (parent = new Test).appendChild(child = new Test).children.length.should.be.equal 1
           (new Test).appendChild(child).children[0].should.be.equal child
-          parent.children.length.should.be.equal 0
+          parent.should.not.have.property 'children'
 
       describe '#removeChild(child)', ->
         it 'should return the node', -> (test = new Test).removeChild({}).should.be.equal test
         it 'should remove the child', ->
-          (new Test).appendChild(child = new Test).removeChild(child).children.length.should.be.equal 0
+          (new Test).appendChild(child = new Test).removeChild(child).should.not.have.property 'children'
