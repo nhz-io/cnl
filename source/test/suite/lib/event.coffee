@@ -30,34 +30,13 @@ module.exports = (Test, name = 'Event') ->
     it 'should set the event type from the args', ->
       (new Test type:'test').type.should.be.equal 'test'
 
-    it 'should set the event phase', -> (new Test phase:'test').phase.should.be.equal 'test'
-    it 'should set the event cancelable', -> (new Test cancelable:'test').cancelable.should.be.equal 'test'
-    it 'should set the event bubbles', -> (new Test bubbles:'test').bubbles.should.be.equal 'test'
-    it 'should set the event source', -> (new Test source:'test').source.should.be.equal 'test'
-    it 'should set the event target', -> (new Test target:'test').target.should.be.equal 'test'
-    it 'should set the event bubbling', -> (new Test bubbling:'test').bubbling.should.be.equal 'test'
-    it 'should set the event sinking', -> (new Test sinking:'test').sinking.should.be.equal 'test'
-    it 'should set the event started', -> (new Test started:'test').started.should.be.equal 'test'
-    it 'should set the event stopped', -> (new Test stopped:'test').stopped.should.be.equal 'test'
-    it 'should set the event canceled', -> (new Test canceled:'test').canceled.should.be.equal 'test'
-    it 'should set the event aborted', -> (new Test aborted:'test').aborted.should.be.equal 'test'
-    it 'should set the event done', -> (new Test done:'test').done.should.be.equal 'test'
-    it 'should set the event timestamp', -> (new Test).timestamp.should.be.a.Number
+    it 'should set any key/value pair passed in args', ->
+      (new Test foo:'bar').foo.should.be.equal 'bar'
+
+    it 'should not overwrite the timestamp from args', ->
+      should(new Test(timestamp:null).timestamp).be.equal null
 
     describe 'instance', ->
-      it 'should have a type property', -> (new Test).should.have.property 'type'
-      it 'should have a phase property', -> (new Test).should.have.property 'phase'
-      it 'should have a cancelable property', -> (new Test).should.have.property 'cancelable'
-      it 'should have a bubbles property', -> (new Test).should.have.property 'bubbles'
-      it 'should have a source property', -> (new Test).should.have.property 'source'
-      it 'should have a target property', -> (new Test).should.have.property 'target'
-      it 'should have a bubbling property', -> (new Test).should.have.property 'bubbling'
-      it 'should have a sinking property', -> (new Test).should.have.property 'sinking'
-      it 'should have a started property', -> (new Test).should.have.property 'started'
-      it 'should have a stopped property', -> (new Test).should.have.property 'stopped'
-      it 'should have a canceled property', -> (new Test).should.have.property 'canceled'
-      it 'should have a aborted property', -> (new Test).should.have.property 'aborted'
-      it 'should have a done property', -> (new Test).should.have.property 'done'
       it 'should have a timestamp property', -> (new Test).should.have.property 'timestamp'
 
       it 'should have a start() method', -> (new Test).start.should.be.a.Function

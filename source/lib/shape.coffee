@@ -37,5 +37,8 @@ module.exports = class Shape extends require './element'
       event.zones = @getZones event.x, event.y
 
   draw: (context, args) ->
-    @broadcastEvent new Event type:'draw', target:this
+    event = new Event type:'draw', target:this
+    event.context = context
+    event.args = args
+    @broadcastEvent event
     return this
