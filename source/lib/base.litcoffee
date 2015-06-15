@@ -1,4 +1,4 @@
-# Class: **Base**
+# Class: Base
 
 All classes extend this.
 

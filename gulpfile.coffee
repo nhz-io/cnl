@@ -15,6 +15,7 @@ $ =
   buffer        :require 'vinyl-buffer'
   packer        :require 'gulp-packer'
   streamify     :require 'gulp-streamify'
+  jsdocmd       :require 'gulp-jsdoc-to-markdown'
 
   extendsRegexp : /((__)?extends?)\s*=\s*function\(child,\s*parent\)\s*\{.+?return\s*child;\s*\}/
 
@@ -30,7 +31,7 @@ $.gulp.task 'clean', (cb) -> $.del [
 $.gulp.task 'lint', ->
   $.gulp
     .src [ "#{_.source}/**/*.+(coffee|litcoffee|coffee.md)" ]
-    .pipe $.lint './coffeelint.json'
+    .pipe $.lint './coffeelint.json', literate:true
     .pipe $.lint.reporter()
 
 $.gulp.task 'build', ['coffee', 'copy'], ->
@@ -48,7 +49,7 @@ $.gulp.task 'copy', ['clean', 'lint'], ->
 $.gulp.task 'coffee', [ 'clean', 'lint'], ->
   $.gulp
     .src [ "#{_.source}/**/*.+(coffee|litcoffee|coffee.md)" ]
-    .pipe $.coffee bare:true
+    .pipe $.coffee bare:true, literate:true
     .pipe $.replace $.extendsRegexp, '$1 = require("extends__")'
     .pipe $.gulp.dest _.build
 
@@ -83,7 +84,10 @@ $.gulp.task 'pack', [ 'build', 'test' ], ->
     .pipe $.streamify $.packer base62:true, shrink:true
     .pipe $.gulp.dest './'
 
-$.gulp.task 'dist', [ 'build', 'test', 'browserify', 'uglify', 'pack' ], ->
+$.gulp.task 'docs', [ 'build', 'test' ], ->
+
+
+$.gulp.task 'dist', [ 'build', 'test', 'browserify', 'uglify', 'pack', 'docs' ], ->
   $.gulp
     .src [ "#{_.build}/**", "!#{_.build}/#{_.browserify}.js", "!#{_.build}/test{,/**}" ]
     .pipe $.gulp.dest _.dist

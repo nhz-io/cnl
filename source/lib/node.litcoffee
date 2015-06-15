@@ -1,4 +1,4 @@
-# Class: **Node** extends [Base][Base]
+# Class: Node extends [Base][Base]
 
 Parent-Child aggregation.
 
