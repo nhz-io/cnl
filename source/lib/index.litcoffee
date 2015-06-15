@@ -1,62 +1,35 @@
 # Namespace: lib
 
-## Exports
-
     module.exports =
-
-* [lib.Base][Base]
-
-All classes extend this.
-
       Base      : require './base'
-
-* [lib.Event][Event]
-
-Light Event 
-
       Event     : require './event'
-
-* [lib.Node][Node]
-
-Parent-Child Aggregation
-
       Node      : require './node'
-
-* [lib.Evented][Evented]
-
-Event Subsytem
-
       Evented   : require './evented'
-  
-* [lib.Element][Element]
-
-Visual Element
-
       Element   : require './element'
-
-* [lib.Shape][Shape]
-
-Drawable Shape
-
       Shape     : require './shape'
-
-* [lib.Component][Component]
-
-Dragable Component
-
       Component : require './component'
-
-* [lib.Style][Style]
-
-Element Style
+      Pen       : require './pen'
       Style     : require './style'
 
-* [lib.Pen][Pen]
+## Exports
 
-Common ancestor for pens
+* [lib.Base][Base] - All classes extend this.
 
-      Pen       : require './pen'
+* [lib.Event][Event] - Light Event
 
+* [lib.Node][Node] - Parent-Child Aggregation
+
+* [lib.Evented][Evented] - Event Subsytem
+
+* [lib.Element][Element] - Visual Element
+
+* [lib.Shape][Shape] - Drawable Shape
+
+* [lib.Component][Component] - Dragable Component
+
+* [lib.Style][Style] - Element Style
+
+* [lib.Pen][Pen] - Common ancestor for pens
 
 [Base]: ./base.litcoffee
 [Event]: ./event.litcoffee
