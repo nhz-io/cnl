@@ -15,7 +15,8 @@ $ =
   buffer        :require 'vinyl-buffer'
   packer        :require 'gulp-packer'
   streamify     :require 'gulp-streamify'
-  jsdocmd       :require 'gulp-jsdoc-to-markdown'
+  docco         :require 'gulp-docco'
+  map           :require 'map-stream'
 
   extendsRegexp : /((__)?extends?)\s*=\s*function\(child,\s*parent\)\s*\{.+?return\s*child;\s*\}/
 
@@ -31,7 +32,7 @@ $.gulp.task 'clean', (cb) -> $.del [
 $.gulp.task 'lint', ->
   $.gulp
     .src [ "#{_.source}/**/*.+(coffee|litcoffee|coffee.md)" ]
-    .pipe $.lint './coffeelint.json', literate:true
+    .pipe $.lint './coffeelint.json'
     .pipe $.lint.reporter()
 
 $.gulp.task 'build', ['coffee', 'copy'], ->
@@ -49,7 +50,7 @@ $.gulp.task 'copy', ['clean', 'lint'], ->
 $.gulp.task 'coffee', [ 'clean', 'lint'], ->
   $.gulp
     .src [ "#{_.source}/**/*.+(coffee|litcoffee|coffee.md)" ]
-    .pipe $.coffee bare:true, literate:true
+    .pipe $.coffee bare:true
     .pipe $.replace $.extendsRegexp, '$1 = require("extends__")'
     .pipe $.gulp.dest _.build
 
@@ -84,10 +85,23 @@ $.gulp.task 'pack', [ 'build', 'test' ], ->
     .pipe $.streamify $.packer base62:true, shrink:true
     .pipe $.gulp.dest './'
 
-$.gulp.task 'docs', [ 'build', 'test' ], ->
+$.gulp.task 'docco', ['clean', 'lint'], ->
+  $.gulp
+    .src [ "#{_.source}/**/*.litcoffee" ]
+    .pipe $.buffer()
+    .pipe $.map (file, callback) ->
+      links = ''
+      data = file.contents.toString 'utf8'
+      for link in data.match /^(\[.+\]:.+)$/gm
+        links += link.replace /^(\[.+?\]:\s*(?!\/\/)[-._a-z0-9\/]+)litcoffee/gmi, "$1html"
+        links += "\n"
+      if links then file.contents = new Buffer data.replace /(^#{1,6}.+?$)/gmi, "$1\n#{links}\n"
+      callback null, file
+      console.log links
+    .pipe $.docco()
+    .pipe $.gulp.dest _.doc
 
-
-$.gulp.task 'dist', [ 'build', 'test', 'browserify', 'uglify', 'pack', 'docs' ], ->
+$.gulp.task 'dist', [ 'build', 'test', 'browserify', 'uglify', 'pack', 'docco' ], ->
   $.gulp
     .src [ "#{_.build}/**", "!#{_.build}/#{_.browserify}.js", "!#{_.build}/test{,/**}" ]
     .pipe $.gulp.dest _.dist

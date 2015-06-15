@@ -4,9 +4,9 @@ All classes extend this.
 
     module.exports = class Base
 
-## Base
+## Constructor
 
-### new Base()
+**new Base()**
 
 Creates **Base** instance. Call `super` from descendant class
 if **___runtime** is required.
@@ -16,8 +16,7 @@ if **___runtime** is required.
 
 ## Properties
 
-### #___runtime
-
+**___runtime**
 * Type: [Object][Object]
 
 Private property which serves as a heap of data that should not
