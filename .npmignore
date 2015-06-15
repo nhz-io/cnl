@@ -1,6 +1,7 @@
 node_modules/
 source/
 build/
+doc/
 .git/
 .gitignore
 .editorconfig
