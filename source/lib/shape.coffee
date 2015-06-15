@@ -1,11 +1,6 @@
 Event = require './event'
 
-findPointZones = (x, y, zones) ->
-  result = {}
-  result[name] = $ for name, $ of zones when (
-    $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
-  )
-  return result
+zonesFromPoint = require '../helper/zones-from-point'
 
 module.exports = class Shape extends require './element'
   constructor: (args = {}) ->
@@ -17,10 +12,22 @@ module.exports = class Shape extends require './element'
         @addListener name, ((e) -> e.stop() unless @events?[name]), yes
         @addListener name, ((e) -> e.stop() unless @events?[name]), no
 
+  ###
+    All the capturing listeners below find and store the 'active zones'
+    in the event. There is a trick used here which involves setting
+    an 'event target' to 'this element'. This is done to ensure the
+    non-capturing event listeners will be called. It will happen only
+    after the event was dispatched to the children of 'this element'
+    and none of those children have change the 'event target'.
+    This allows the children to change the 'current active element'
+    and call it's own non-capturing listeners. This can only happen
+    if there is at least one 'active zone' for this event
+  ###
+
   mousemoveCaptureListener: (event) ->
     super
-    if zones = findPointZones event.localX, event.localY, @zones
-      event.zones = zones
+    if zones = zonesFromPoint event.localX, event.localY, @zones
+a      event.zones = zones
       for name in ['active', 'hover', 'normal'] when zones[name]
         state = name
         break
@@ -29,7 +36,7 @@ module.exports = class Shape extends require './element'
 
   mousedownCaptureListener: (event) ->
     super
-    if zones = findPointZones event.localX, event.localY, @zones
+    if zones = zonesFromPoint event.localX, event.localY, @zones
       event.zones = zones
       for name in ['active', 'hover', 'normal'] when zones[name]
         state = name
@@ -39,7 +46,7 @@ module.exports = class Shape extends require './element'
 
   mouseupCaptureListener: (event) ->
     super
-    if zones = findPointZones event.localX, event.localY, @zones
+    if zones = zonesFromPoint event.localX, event.localY, @zones
       event.zones = zones
       for name in ['active', 'hover', 'normal'] when zones[name]
         state = name
