@@ -1,8 +1,6 @@
 Event = require './event'
 
-localizeEventCoordinates = (event, origin) ->
-  event.localX = (if event.localX? then event.localX else event.x) - (origin?.x or 0)
-  event.localY = (if event.localY? then event.localY else event.y) - (origin?.y or 0)
+localizeEventCoordinates = require '../helper/localize-event-coordinates'
 
 module.exports = class Element extends require './evented'
   constructor: (args = {}) ->
@@ -21,6 +19,11 @@ module.exports = class Element extends require './evented'
     for name in ['mousemove', 'mousedown', 'mouseup']
       @addListener name, this["#{name}CaptureListener"], yes
       @addListener name, this["#{name}Listener"], no
+
+  ###
+    All the capturing listeners below store the event
+    in the runtime and localize the event coordinates.
+  ###
 
   mousemoveCaptureListener: (event) ->
     @___runtime.mousemoveEvent = event
