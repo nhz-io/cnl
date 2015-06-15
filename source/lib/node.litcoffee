@@ -13,11 +13,11 @@ and the **children** properties.
 
 #### Parameters
 
-Name          |  Type    | Description
---------------|:--------:|----------------------------------
-args          | Object   | Optional constructor arguments
-args.children | Array    | Optional children list
-args.parent   | Node     | Optional parent node
+Name          |  Type            | Description
+--------------|:----------------:|----------------------------------
+args          | [Object][Object] | Optional constructor arguments
+args.children | [Array][Array]   | Optional children list
+args.parent   | [Node][Node]     | Optional parent node
 
       constructor: (args = {}) ->
         super
@@ -29,15 +29,15 @@ args.parent   | Node     | Optional parent node
 
 ### #parent        
 
-* Type: **Node**
+* Type: [Node][Node]
   
-Parent **Node** instance. Created only if passed in args
+Node parent. Created only if passed in args
 
 ### #children
 
-* Type: **Array**
+* Type: [Array][Array]
 
-Children **Array**. Created only if passed in args
+List of children. Created only if passed in args
 
 ## Methods
 
@@ -48,9 +48,9 @@ Removes the child from its previous parent.
 
 #### Parameters
 
-Name          |  Type    | Description
---------------|:--------:|----------------------------------
-child         | Node     | A child to append
+Name          |  Type             | Description
+--------------|:----------------:|----------------------------------
+child         | [Node][Node]     | A child to append
  
       appendChild: (child) ->
         if child instanceof Node and (@children ||= [])
@@ -67,9 +67,9 @@ of the child.
 
 #### Parameters
 
-Name          |  Type    | Description
---------------|:--------:|----------------------------------
-child         | Node     | A child to remove
+Name          |  Type             | Description
+--------------|:----------------:|----------------------------------
+child         | [Node][Node]     | A child to remove
 
       removeChild: (child) ->
         if child instanceof Node and @children
@@ -80,3 +80,6 @@ child         | Node     | A child to remove
         return this
 
 [Base]: ./base.litcoffee
+[Node]: ./node.litcoffee
+[Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+[Object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object

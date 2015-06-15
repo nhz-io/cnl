@@ -18,9 +18,11 @@ if **___runtime** is required.
 
 ### #___runtime
 
-* Type: **Object**
+* Type: [Object][Object]
 
 Private property which serves as a heap of data that should not
 be exposed on the instance. Created with enumerable, configurable
 and writable set **no**.
+
+[Object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 
