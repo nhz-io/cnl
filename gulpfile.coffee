@@ -97,7 +97,6 @@ $.gulp.task 'docco', ['clean', 'lint'], ->
         return ''
       if links then file.contents = new Buffer data.replace /(^#{1,6}.+?$)/gmi, "$1\n#{links}\n"
       callback null, file
-      console.log "LINKS", links
     .pipe $.docco()
     .pipe $.gulp.dest _.doc
 
