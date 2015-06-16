@@ -1,0 +1,16 @@
+# CNL
+
+    module.exports =
+      lib    : require './lib/index'
+      pen    : require './pen/index'
+      style : require './style/index'
+
+## Exports
+
+* [lib][lib] - Core classes
+* [pen][pen] - Canvas Pens
+* [style][style] - Element styles
+
+[lib]: ./lib/index.litcoffee
+[pen]: ./pen/index.litcoffee
+[style]: ./style/index.litcoffee
