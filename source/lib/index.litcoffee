@@ -1,4 +1,4 @@
-# Namespace: lib
+# NAMESPACE: lib
 
     module.exports =
       Base      : require './base'
@@ -11,7 +11,7 @@
       Pen       : require './pen'
       Style     : require './style'
 
-## Exports
+## EXPORTS
 
 * [lib.Base][Base] - All classes extend this.
 

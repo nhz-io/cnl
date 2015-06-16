@@ -1,11 +1,11 @@
-# Namespace: pen
+# NAMESPACE: pen
 
     module.exports =
       Rectangle: require './rectangle'
       Line: require './line'
       Text: require './text'
 
-## Exports
+## EXPORTS
 
 * [pen.Rectangle][Rectangle] - Rectangle pen
 

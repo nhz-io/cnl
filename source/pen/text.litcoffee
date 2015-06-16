@@ -1,4 +1,4 @@
-# Class: Text
+# CLASS: Text
 
     module.exports = class Text extends require '../lib/pen'
       constructor: (args = {}) ->

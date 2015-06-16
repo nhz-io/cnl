@@ -1,4 +1,4 @@
-# Class: Line
+# CLASS: Line
 
     module.exports = class Line extends require '../lib/pen'
       constructor: (args = {}) ->

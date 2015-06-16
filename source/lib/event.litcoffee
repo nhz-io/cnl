@@ -1,4 +1,4 @@
-# Class: Event
+# CLASS: Event
 Light Event.
 
     module.exports = class Event extends require './base'

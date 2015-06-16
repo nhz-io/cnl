@@ -1,4 +1,4 @@
-# Class: Rectangle
+# CLASS: Rectangle
 
     module.exports = class Rectangle extends require '../lib/pen'
       constructor: (args = {}) ->

@@ -1,13 +1,15 @@
-# Class: Node 
+# CLASS: Node 
 * Extends: [Base][Base]
 
 Parent-Child aggregation.
 
     module.exports = class Node extends require './base'
 
-## Constructor
+---
 
-**new Node(args)**
+## CONSTRUCTOR
+
+### new Node(args)
 
 Creates **Node** instance, optionally setting the **parent**
 and the **children** properties.
@@ -17,7 +19,7 @@ and the **children** properties.
         args.children and @children = args.children
         args.parent and @parent = args.parent
 
-#### Parameters
+#### PARAMETERS
 
 **args**
 * Type: [Object][Object] - Optional constructor arguments
@@ -28,7 +30,7 @@ and the **children** properties.
 **args.parent**
 * Type: [Node][Node] - Optional parent node
 
-## Properties
+## PROPERTIES
 
 **#parent**
 * Type: [Node][Node] - Node parent. Created only if passed in args.
@@ -36,9 +38,11 @@ and the **children** properties.
 **#children**
 * Type: [Array][Array] - List of children. Created only if passed in args
 
-## Methods
+---
 
-**#appendChild(child)**
+## METHODS
+
+### #appendChild(child)
 
 Appends the child to children list. Will not append duplicates!
 Removes the child from its previous parent.
@@ -51,14 +55,14 @@ Removes the child from its previous parent.
             @children.push child
         return this
 
-#### Parameters
+#### PARAMETERS
 
 **child**
 * Type: [Node][Node] - The child to append.
 
 ---
  
-**#removeChild(child)**
+### #removeChild(child)
 
 Removes the child from children list. Will delete parent property
 of the child.
@@ -71,7 +75,7 @@ of the child.
           delete @children if @children.length is 0
         return this
 
-#### Parameters
+#### PARAMETERS
 
 **child**
 * Type: [Node][Node] - The child to remove.

@@ -1,4 +1,4 @@
-# Class: Shape
+# CLASS: Shape
 
     _ = (o, p) -> Object.prototype.hasOwnProperty.call o, p
 

@@ -1,4 +1,4 @@
-# Class: Element
+# CLASS: Element
 Visual Element
 
     Event = require './event'

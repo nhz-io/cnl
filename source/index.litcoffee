@@ -5,7 +5,7 @@
       pen    : require './pen/index'
       style : require './style/index'
 
-## Exports
+## EXPORTS
 
 * [lib][lib] - Core classes
 * [pen][pen] - Canvas Pens

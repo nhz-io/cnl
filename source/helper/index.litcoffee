@@ -1,10 +1,10 @@
-# Namespace: helper
+# NAMESPACE: helper
 
     module.exports =
       localizeEventCoordinates: require './localize-event-coordinates'
       findPointZones: require './zones-from-point'
 
-## Exports
+## EXPORTS
 
 * [helper.localizeEventCoordinates][localizeEventCoordinates] - coordinate localizer
 

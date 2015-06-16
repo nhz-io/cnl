@@ -1,4 +1,4 @@
-# Class: Shape
+# CLASS: Shape
 
     Event = require './event'
 

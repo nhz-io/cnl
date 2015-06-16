@@ -1,10 +1,10 @@
-# Class: Base
+# CLASS: Base
 
 All classes extend this.
 
     module.exports = class Base
 
-## Constructor
+## CONSTRUCTOR
 
 **new Base()**
 
@@ -14,7 +14,7 @@ if **___runtime** is required.
       constructor: -> Object.defineProperty this, '___runtime',
         enumerable:no, writable:no, configurable:no, value:{}
 
-## Properties
+## PROPERTIES
 
 **___runtime**
 * Type: [Object][Object]

@@ -1,4 +1,4 @@
-# Class: Style
+# CLASS: Style
 
     module.exports = class Style extends require './base'
       constructor: (args = {}) ->

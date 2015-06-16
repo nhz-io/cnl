@@ -1,4 +1,4 @@
-# Class: Component
+# CLASS: Component
 
     Event = require './event'
     localizeEventCoordinates = require '../helper/localize-event-coordinates'

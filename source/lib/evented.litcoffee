@@ -1,4 +1,4 @@
-# Class: Evented
+# CLASS: Evented
 Event Subsystem.
 
     Event = require './event'

@@ -1,9 +1,9 @@
-# Namespace: pen
+# NAMESPACE: pen
 
     module.exports =
       Shape : require './shape'
 
-## Exports
+## EXPORTS
 
 * [style.Shape][Shape] - Shape style
 
