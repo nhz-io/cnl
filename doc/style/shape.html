@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Class: Shape</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="class-shape">Class: Shape</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">_</span> = <span class="hljs-params">(o, p)</span> -&gt;</span> Object.prototype.hasOwnProperty.call o, p
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> '../<span class="hljs-title">lib</span>/<span class="hljs-title">style</span>'</span>
+  <span class="hljs-attribute">mapper</span>: <span class="hljs-function"><span class="hljs-params">(data, context, callback)</span> -&gt;</span>
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'width'</span>) <span class="hljs-keyword">or</span> (_ data, <span class="hljs-string">'height'</span>)
+      width = (parseFloat data[<span class="hljs-string">'width'</span>]) <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>
+      height = (parseFloat data[<span class="hljs-string">'height'</span>]) <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>
+      context.size = <span class="hljs-attribute">width</span>:width, <span class="hljs-attribute">height</span>:height
+
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'top'</span>) <span class="hljs-keyword">or</span> (_ data, <span class="hljs-string">'left'</span>)
+      x = (parseFloat data[<span class="hljs-string">'left'</span>]) <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>
+      y = (parseFloat data[<span class="hljs-string">'top'</span>]) <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>
+      context.origin = <span class="hljs-attribute">x</span>:x, <span class="hljs-attribute">y</span>:y
+
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'background'</span>) <span class="hljs-keyword">then</span> context.fill = data[<span class="hljs-string">'background'</span>]
+
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'fill'</span>) <span class="hljs-keyword">then</span> context.fill = data[<span class="hljs-string">'fill'</span>]
+
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'color'</span>) <span class="hljs-keyword">then</span> context.stroke = data[<span class="hljs-string">'color'</span>]
+
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'stroke'</span>) <span class="hljs-keyword">then</span> context.stroke = data[<span class="hljs-string">'stroke'</span>]
+
+    <span class="hljs-keyword">if</span> (_ data, <span class="hljs-string">'line-width'</span>)
+      context.line-width = (parseFloat data[<span class="hljs-string">'line-width'</span>]) <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>
+
+    <span class="hljs-keyword">if</span> url = context.fill?.match <span class="hljs-regexp">/url\(\s*(["'']?)\s*(.+)\1\)/</span>
+      url = url[<span class="hljs-number">2</span>]
+      <span class="hljs-keyword">if</span> repeat = context.fill.match <span class="hljs-regexp">/(norepeat|repeat-x|repeat-y)/</span>
+        repeat = repeat[<span class="hljs-number">1</span>]
+      <span class="hljs-keyword">else</span>
+        repeat = <span class="hljs-literal">null</span>
+
+      fill = <span class="hljs-literal">null</span>
+
+      (image = <span class="hljs-keyword">new</span> Image).src = url
+      image.onload = <span class="hljs-function">=&gt;</span>
+        context.fill = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'canvas'</span>).getContext <span class="hljs-string">'2d'</span>
+          .createPattern image, repeat <span class="hljs-keyword">or</span> <span class="hljs-string">'repeat'</span>
+        callback?.call <span class="hljs-keyword">this</span>, <span class="hljs-literal">null</span>, context
+
+      image.onerror = <span class="hljs-function"><span class="hljs-params">(e)</span> =&gt;</span> callback?.call <span class="hljs-keyword">this</span>, e, context
+
+    <span class="hljs-keyword">else</span>
+      callback?.call <span class="hljs-keyword">this</span>, <span class="hljs-literal">null</span>, context</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

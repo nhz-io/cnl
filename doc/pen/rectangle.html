@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Class: Rectangle</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="class-rectangle">Class: Rectangle</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> '../<span class="hljs-title">lib</span>/<span class="hljs-title">pen</span>'</span>
+  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {})</span> -&gt;</span>
+    <span class="hljs-property">@size</span> = args.size <span class="hljs-keyword">or</span> <span class="hljs-attribute">width</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span>
+    <span class="hljs-property">@origin</span> = args.origin
+    {<span class="hljs-property">@fill</span>, <span class="hljs-property">@stroke</span>, <span class="hljs-property">@lineWidth</span>} = args
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>
+
+  <span class="hljs-attribute">draw</span>: <span class="hljs-function"><span class="hljs-params">(context, args = {})</span> -&gt;</span>
+    <span class="hljs-keyword">if</span> context
+      origin = args.origin <span class="hljs-keyword">or</span> <span class="hljs-property">@origin</span> <span class="hljs-keyword">or</span> <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+      size = args.size <span class="hljs-keyword">or</span> <span class="hljs-property">@size</span> <span class="hljs-keyword">or</span> <span class="hljs-attribute">width</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">height</span>:<span class="hljs-number">0</span>
+      fill = args.fill <span class="hljs-keyword">or</span> <span class="hljs-property">@fill</span>
+      stroke = args.stroke <span class="hljs-keyword">or</span> <span class="hljs-property">@stroke</span>
+      lineWidth = args.lineWidth <span class="hljs-keyword">or</span> <span class="hljs-property">@lineWidth</span>
+
+      <span class="hljs-keyword">if</span> lineWidth % <span class="hljs-number">2</span>
+        origin.x += <span class="hljs-number">0.5</span>
+        origin.y += <span class="hljs-number">0.5</span>
+
+      <span class="hljs-keyword">if</span> fill <span class="hljs-keyword">instanceof</span> Object
+        context.save()
+        context.translate origin.x, origin.y
+        origin.x = origin.y = <span class="hljs-number">0</span>
+
+      <span class="hljs-keyword">if</span> fill <span class="hljs-keyword">or</span> stroke
+        context.beginPath()
+
+      <span class="hljs-keyword">if</span> fill
+        context.fillStyle = fill
+        context.fillRect origin.x, origin.y, size.width, size.height
+
+      <span class="hljs-keyword">if</span> stroke
+        context.strokeStyle = stroke
+        context.lineWidth = lineWidth <span class="hljs-keyword">if</span> lineWidth
+        context.strokeRect origin.x, origin.y, size.width, size.height
+
+      <span class="hljs-keyword">if</span> fill <span class="hljs-keyword">instanceof</span> Object
+        context.restore()</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

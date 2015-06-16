@@ -2,5 +2,5 @@
 /.*
 /*.*
 !/.gitignore
-!/.doc
-!/.index.html
+!/doc
+!/index.html

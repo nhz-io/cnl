@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Class: Component</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="class-component">Class: Component</h1>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>Event = <span class="hljs-built_in">require</span> <span class="hljs-string">'./event'</span>
+localizeEventCoordinates = <span class="hljs-built_in">require</span> <span class="hljs-string">'../helper/localize-event-coordinates'</span>
+
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Component</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">shape</span>'</span>
+  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {})</span> -&gt;</span>
+    <span class="hljs-keyword">super</span>
+    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">'grab'</span>, <span class="hljs-string">'release'</span>, <span class="hljs-string">'drag'</span>]
+      <span class="hljs-keyword">do</span> (name) =&gt;
+        <span class="hljs-property">@addListener</span> name, <span class="hljs-function">(<span class="hljs-params">(e)</span> -&gt;</span> e.stop() <span class="hljs-keyword">unless</span> <span class="hljs-property">@events</span>?[name]), <span class="hljs-literal">yes</span>
+        <span class="hljs-property">@addListener</span> name, <span class="hljs-function">(<span class="hljs-params">(e)</span> -&gt;</span> e.stop() <span class="hljs-keyword">unless</span> <span class="hljs-property">@events</span>?[name]), <span class="hljs-literal">no</span>
+
+    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">'grab'</span>, <span class="hljs-string">'release'</span>, <span class="hljs-string">'drag'</span>]
+      <span class="hljs-property">@addListener</span> name, <span class="hljs-keyword">this</span>[<span class="hljs-string">"<span class="hljs-subst">#{name}</span>CaptureListener"</span>], <span class="hljs-literal">yes</span>
+
+  <span class="hljs-attribute">mousemoveCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-property">@___runtime</span>.grab
+      <span class="hljs-property">@state</span> =
+      <span class="hljs-keyword">if</span> zones = event.zones
+        <span class="hljs-property">@state</span> = (<span class="hljs-keyword">if</span> zones.hover <span class="hljs-keyword">then</span> <span class="hljs-string">'hover'</span> <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> zones.normal <span class="hljs-keyword">then</span> <span class="hljs-string">'normal'</span>)
+
+  <span class="hljs-attribute">mouseupCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span>
+    ($ = <span class="hljs-property">@___runtime</span>).grab = <span class="hljs-literal">false</span>
+
+    <span class="hljs-keyword">if</span> $.grab
+      $.grab = <span class="hljs-literal">false</span>
+      <span class="hljs-property">@state</span> = <span class="hljs-literal">null</span>
+      <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.release
+        <span class="hljs-property">@broadcastEvent</span> $.releaseEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'release'</span>,
+          <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">mousemoveListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span>
+    $ = <span class="hljs-property">@___runtime</span>
+    <span class="hljs-keyword">if</span> $.grab
+      <span class="hljs-property">@state</span> = <span class="hljs-string">'active'</span>
+      <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.drag
+        <span class="hljs-property">@broadcastEvent</span> $.dragEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'drag'</span>,
+          <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>
+          <span class="hljs-attribute">offsetX</span>: event.x - ($.dragEvent?.x <span class="hljs-keyword">or</span> $.grabEvent?.x <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>)
+          <span class="hljs-attribute">offsetY</span>: event.y - ($.dragEvent?.y <span class="hljs-keyword">or</span> $.grabEvent?.y <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>)
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-property">@state</span> = <span class="hljs-literal">null</span>
+      <span class="hljs-keyword">if</span> states = event.states
+        <span class="hljs-property">@state</span> = (<span class="hljs-keyword">if</span> states.hover <span class="hljs-keyword">then</span> <span class="hljs-string">'hover'</span> <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> states.normal <span class="hljs-keyword">then</span> <span class="hljs-string">'normal'</span>)
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">mousedownListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span>
+    ($ = <span class="hljs-property">@___runtime</span>).grab = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-property">@state</span> <span class="hljs-keyword">is</span> <span class="hljs-string">'active'</span>) <span class="hljs-keyword">and</span> <span class="hljs-property">@events</span>?.grab
+      <span class="hljs-property">@broadcastEvent</span> $.grabEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'grab'</span>,
+        <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">mouseupListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span>
+    $ = <span class="hljs-property">@___runtime</span>
+    <span class="hljs-property">@state</span> = <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">if</span> zones = event.zones
+      <span class="hljs-property">@state</span> = (<span class="hljs-keyword">if</span> zones.hover <span class="hljs-keyword">then</span> <span class="hljs-string">'hover'</span> <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> zones.normal <span class="hljs-keyword">then</span> <span class="hljs-string">'normal'</span>)
+    <span class="hljs-keyword">if</span> $.grab
+      $.grab = <span class="hljs-literal">false</span>
+      <span class="hljs-property">@state</span> = <span class="hljs-literal">null</span>
+      <span class="hljs-keyword">if</span> states = event.states
+        <span class="hljs-property">@state</span> = (<span class="hljs-keyword">if</span> states.hover <span class="hljs-keyword">then</span> <span class="hljs-string">'hover'</span> <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> states.normal <span class="hljs-keyword">then</span> <span class="hljs-string">'normal'</span>)
+
+      <span class="hljs-property">@broadcastEvent</span> $.grabEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'release'</span>,
+        <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">dragCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-property">@___runtime</span>.dragEvent = event
+    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">grabCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-property">@___runtime</span>.grabEvent = event
+    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">releaseCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-property">@___runtime</span>.releaseEvent = event
+    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">dragListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">grabListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span>
+
+  <span class="hljs-attribute">releaseListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
