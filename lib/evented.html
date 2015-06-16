@@ -22,69 +22,368 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h1 id="class-evented">CLASS: Evented</h1>
+<ul>
+<li>Extends: <a href="./node.html">Node</a></li>
+</ul>
 <p>Event Subsystem.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>Event = <span class="hljs-built_in">require</span> <span class="hljs-string">'./event'</span>
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Evented</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">node</span>'</span>
-  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args)</span> -&gt;</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Evented</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">node</span>'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="constructor">CONSTRUCTOR</h2>
+<h3 id="new-evented-args-">new Evented(args)</h3>
+<p>Creates <strong>Evented</strong> instance. Initializes <strong>#listeners</strong> and <strong>#events</strong></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args)</span> -&gt;</span>
     <span class="hljs-keyword">super</span>
     (<span class="hljs-property">@events</span> ||= {}) <span class="hljs-keyword">and</span> <span class="hljs-property">@events</span>[key] = value <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">of</span> args?.events
-    <span class="hljs-property">@listeners</span> = [{}, {}]
+    <span class="hljs-property">@listeners</span> = [{}, {}]</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>args</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - optional constructor argument.</li>
+</ul>
+<p><strong>args.events</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - enabled events. (event-name: true/false)</li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">addListener</span>: <span class="hljs-function"><span class="hljs-params">(type, listener, capture = <span class="hljs-literal">false</span>)</span> -&gt;</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2 id="methods">METHODS</h2>
+<h3 id="-addlistener-args-">#addListener(args)</h3>
+<h3 id="-addlistener-type-listener-capture-">#addListener(type, listener, capture)</h3>
+<ul>
+<li>Returns: <a href="./evented.html">Evented</a></li>
+</ul>
+<p>Add a listener (per capturing/non-capturing group) for the event type.
+Will not add duplicates. Will not add listeners if event is not enabled.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">addListener</span>: <span class="hljs-function"><span class="hljs-params">(type, listener, capture = <span class="hljs-literal">false</span>)</span> -&gt;</span>
     <span class="hljs-keyword">if</span> type <span class="hljs-keyword">instanceof</span> Object <span class="hljs-keyword">then</span> {type, listener, capture} = type
-    <span class="hljs-keyword">if</span> type <span class="hljs-keyword">and</span> <span class="hljs-keyword">typeof</span> listener <span class="hljs-keyword">is</span> <span class="hljs-string">'function'</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>[type] <span class="hljs-keyword">and</span> <span class="hljs-keyword">typeof</span> listener <span class="hljs-keyword">is</span> <span class="hljs-string">'function'</span>
       listeners = (<span class="hljs-property">@listeners</span>[<span class="hljs-keyword">if</span> capture <span class="hljs-keyword">is</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">then</span> <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>][type] ||= [])
       listeners.push listener <span class="hljs-keyword">if</span> -<span class="hljs-number">1</span> <span class="hljs-keyword">is</span> listeners.indexOf listener
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>args</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - type, listener and capture parameters</li>
+</ul>
+<p>Only if the first argument to addListener is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+<p><strong>type</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - event type</li>
+</ul>
+<p><strong>listener</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> - event listener</li>
+</ul>
+<p><strong>capture</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - capturing/non-capturing flag</li>
+<li>Default: <code>false</code></li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">removeListener</span>: <span class="hljs-function"><span class="hljs-params">(type, listener, capture = <span class="hljs-literal">false</span>)</span> -&gt;</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3 id="-removelistener-args-">#removeListener(args)</h3>
+<h3 id="-removelistener-type-listener-capture-">#removeListener(type, listener, capture)</h3>
+<ul>
+<li>Returns: <a href="./evented.html">Evented</a></li>
+</ul>
+<p>Remove the listener (per capturing/non-capturing group) for the event type.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">removeListener</span>: <span class="hljs-function"><span class="hljs-params">(type, listener, capture = <span class="hljs-literal">false</span>)</span> -&gt;</span>
     <span class="hljs-keyword">if</span> type <span class="hljs-keyword">instanceof</span> Object <span class="hljs-keyword">then</span> {type, listener, capture} = type
     <span class="hljs-keyword">if</span> type <span class="hljs-keyword">and</span> <span class="hljs-keyword">typeof</span> listener <span class="hljs-keyword">is</span> <span class="hljs-string">'function'</span>
       <span class="hljs-keyword">if</span> listeners = <span class="hljs-property">@listeners</span>[<span class="hljs-keyword">if</span> capture <span class="hljs-keyword">is</span> <span class="hljs-literal">true</span> <span class="hljs-keyword">then</span> <span class="hljs-number">1</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>][type]
         listeners.splice idx, <span class="hljs-number">1</span> <span class="hljs-keyword">if</span> -<span class="hljs-number">1</span> <span class="hljs-keyword">isnt</span> idx = listeners.indexOf listener
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>args</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - type, listener and capture parameters</li>
+</ul>
+<p>Only if the first argument to removeListener is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></p>
+<p><strong>type</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - event type</li>
+</ul>
+<p><strong>listener</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> - event listener</li>
+</ul>
+<p><strong>capture</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - capturing/non-capturing flag</li>
+<li>Default: <code>false</code></li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">dispatchEvent</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
-    <span class="hljs-keyword">if</span> (type = event?.type) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> event.aborted
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3 id="-dispatchevent-event-">#dispatchEvent(event)</h3>
+<ul>
+<li>Returns: <a href="./evented.html">Evented</a></li>
+</ul>
+<p>Dispatch the event to registered listeners. The group of listeners 
+(capturing/non-capturing) is determined from the event phase.
+Aborted and not enabled events will be ignored.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">dispatchEvent</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">if</span> (type = event?.type) <span class="hljs-keyword">and</span> <span class="hljs-property">@event</span>[type] <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> event.aborted
       phase = event.phase
       <span class="hljs-keyword">if</span> phase &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> phase &lt; <span class="hljs-number">3</span> <span class="hljs-keyword">and</span> listeners = <span class="hljs-property">@listeners</span>[<span class="hljs-number">2</span>-phase][type]
         event.start()
         <span class="hljs-keyword">for</span> listener <span class="hljs-keyword">in</span> listeners
           <span class="hljs-keyword">break</span> <span class="hljs-keyword">if</span> event.stopped <span class="hljs-keyword">or</span> event.aborted
           listener.call <span class="hljs-keyword">this</span>, event
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong></p>
+<ul>
+<li>Type: <a href="./event.html">Event</a> - event to dispatch</li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">broadcastEvent</span>: <span class="hljs-function"><span class="hljs-params">(event , target)</span> -&gt;</span>
-    <span class="hljs-keyword">if</span> type = event?.type
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h3 id="-broadcastevent-event-">#broadcastEvent(event)</h3>
+<ul>
+<li>Returns: <a href="./evented.html">Evented</a></li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">broadcastEvent</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>No action will be taken if event has no type. This method
+will initialize fresh events. 
+Only broadcast events that have a type. Event source will be
+set to this instance if event has no source. Event target
+can be changed by providing it as second argument to broadcast.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> type = event?.type
       <span class="hljs-keyword">unless</span> event.aborted <span class="hljs-keyword">or</span> event.done <span class="hljs-keyword">or</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">3</span>
         event.start()
         event.source ||= <span class="hljs-keyword">this</span>
-        event.target ||= target
-        phase = (event.phase ||= <span class="hljs-number">1</span>)
+        phase = (event.phase ||= <span class="hljs-number">1</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>If event target is this instance, it means event has reached it’s
+destination. Event phase is set to 2 (AT_TARGET)</p>
 
-        <span class="hljs-keyword">if</span> event.target <span class="hljs-keyword">is</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">then</span> event.phase = <span class="hljs-number">2</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> event.target <span class="hljs-keyword">is</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">then</span> event.phase = <span class="hljs-number">2</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>If event phase is 1 (CAPTURING), the event will be dispatched to
+this instance. After that, the event will be dispatched to every
+while the phase remains CAPTURING and event was not aborted.</p>
 
-        <span class="hljs-keyword">if</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">1</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">1</span>
           <span class="hljs-property">@dispatchEvent</span> event
 
           <span class="hljs-keyword">if</span> <span class="hljs-property">@children</span> <span class="hljs-keyword">then</span> <span class="hljs-keyword">for</span> child <span class="hljs-keyword">in</span> <span class="hljs-property">@children</span>
             <span class="hljs-keyword">if</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> event.aborted
               child.broadcastEvent event
-            <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>After dispatching was finished, it may be possible that the event
+target was changed. If the event target is this instance, the
+event phase will be set to AT_TARGET and the event will be dispatched
+again.</p>
 
-        <span class="hljs-keyword">if</span> event.target <span class="hljs-keyword">is</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">then</span> event.phase = <span class="hljs-number">2</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> event.target <span class="hljs-keyword">is</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">then</span> event.phase = <span class="hljs-number">2</span>
 
-        <span class="hljs-keyword">if</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">2</span> <span class="hljs-keyword">then</span> <span class="hljs-property">@dispatchEvent</span> event
+        <span class="hljs-keyword">if</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">2</span> <span class="hljs-keyword">then</span> <span class="hljs-property">@dispatchEvent</span> event</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>At this point the event has finished it’s lifecycle if event.source
+is this instance, so the event callback will be called if the
+event was not aborted or finished or canceled.</p>
 
-        <span class="hljs-keyword">if</span> event.source <span class="hljs-keyword">is</span> <span class="hljs-keyword">this</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> event.source <span class="hljs-keyword">is</span> <span class="hljs-keyword">this</span>
           <span class="hljs-keyword">unless</span> event.canceled <span class="hljs-keyword">or</span> event.aborted <span class="hljs-keyword">or</span> event.done <span class="hljs-keyword">or</span> event.phase <span class="hljs-keyword">is</span> <span class="hljs-number">3</span>
             event.callback?.call? <span class="hljs-keyword">this</span>, event
           event.phase = <span class="hljs-number">3</span>
           event.finish()
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+
+            </div>
             
         </li>
         
