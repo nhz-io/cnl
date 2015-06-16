@@ -22,29 +22,188 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h1 id="class-style">CLASS: Style</h1>
+<ul>
+<li>Extends: <a href="./base.html">Base</a></li>
+</ul>
+<p>A base class for all styles.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Style</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">base</span>'</span>
-  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {})</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Style</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">base</span>'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="constructor">CONSTRUCTOR</h2>
+<h3 id="new-style-args-">new Style(args)</h3>
+<ul>
+<li>Returns:</li>
+</ul>
+<p>Creates <strong>Style</strong> instance and initializes <strong>#mapper</strong> and <strong>data</strong>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {})</span> -&gt;</span>
     <span class="hljs-keyword">super</span>
     <span class="hljs-property">@mapper</span> = args.mapper <span class="hljs-keyword">if</span> args.mapper
-    <span class="hljs-property">@data</span> = args.data <span class="hljs-keyword">or</span> {}
+    <span class="hljs-property">@data</span> = args.data <span class="hljs-keyword">or</span> {}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>args</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></li>
+</ul>
+<p><strong>args.mapper</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></li>
+</ul>
+<p><strong>args.data</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">load</span>: <span class="hljs-function"><span class="hljs-params">(json, callback)</span> -&gt;</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2 id="methods">METHODS</h2>
+<h3 id="-load-json-callback-">#load(json, callback)</h3>
+<ul>
+<li>Returns [Style][Style]</li>
+</ul>
+<p>Loads the style from JSON data (asynchronous image loading) and calls
+the callback with the status and result.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">load</span>: <span class="hljs-function"><span class="hljs-params">(json, callback)</span> -&gt;</span>
     <span class="hljs-keyword">if</span> json <span class="hljs-keyword">then</span> <span class="hljs-property">@mapper</span> json, <span class="hljs-property">@data</span>, callback
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <hr>
 
-  <span class="hljs-attribute">get</span>: <span class="hljs-function"><span class="hljs-params">(keys...)</span> -&gt;</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3 id="-get-keys-">#get(keys…)</h3>
+<ul>
+<li>Returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></li>
+<li>Returns <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></li>
+</ul>
+<p>Get style data for passed keys. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">get</span>: <span class="hljs-function"><span class="hljs-params">(keys...)</span> -&gt;</span>
     <span class="hljs-keyword">return</span> <span class="hljs-property">@data</span> <span class="hljs-keyword">unless</span> length = keys.length
 
     result = []
     <span class="hljs-keyword">if</span> length <span class="hljs-keyword">is</span> <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> keys[<span class="hljs-number">0</span>] <span class="hljs-keyword">instanceof</span> Array <span class="hljs-keyword">then</span> keys = keys[<span class="hljs-number">0</span>]
     <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> keys <span class="hljs-keyword">then</span> result.push <span class="hljs-property">@data</span>[key] <span class="hljs-keyword">if</span> <span class="hljs-property">@data</span>[key]?
 
-    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">if</span> result.length <span class="hljs-keyword">is</span> <span class="hljs-number">1</span> <span class="hljs-keyword">then</span> result[<span class="hljs-number">0</span>] <span class="hljs-keyword">else</span> result)
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">if</span> result.length <span class="hljs-keyword">is</span> <span class="hljs-number">1</span> <span class="hljs-keyword">then</span> result[<span class="hljs-number">0</span>] <span class="hljs-keyword">else</span> result)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>keys</strong></p>
+<ul>
+<li>Type: VARARGS (SPLAT)</li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">mapper</span>: <span class="hljs-function"><span class="hljs-params">(data, context, callback)</span> -&gt;</span> callback()</pre></div></div>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h3 id="-mapper-data-context-callback-">#mapper(data, context, callback)</h3>
+<ul>
+<li>Returns: UNKNOWN</li>
+</ul>
+<p>A dummy stub mapper for descendants to call <code>super</code> on</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mapper</span>: <span class="hljs-function"><span class="hljs-params">(data, context, callback)</span> -&gt;</span> callback()</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>data</strong></p>
+<ul>
+<li>Type:<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></li>
+</ul>
+<p><strong>context</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></li>
+</ul>
+<p><strong>callback</strong></p>
+<ul>
+<li>Type: <code>function(error, result) { ... }</code></li>
+</ul>
+
+            </div>
             
         </li>
         
