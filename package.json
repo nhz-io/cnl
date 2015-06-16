@@ -31,7 +31,7 @@
     "gulp": "^3.8.11",
     "gulp-coffee": "^2.3.1",
     "gulp-coffeelint": "^0.4.0",
-    "gulp-docco": "0.0.4",
+    "gulp-docco": "git+https://github.com/nhz-io/gulp-docco",
     "gulp-mocha": "^2.0.0",
     "gulp-packer": "^0.1.2",
     "gulp-replace": "^0.5.3",
