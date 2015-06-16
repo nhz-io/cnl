@@ -3,6 +3,8 @@
 ## CNL [![Build Status][travis-image]][travis-url]
 [![NPM][npm-image]][npm-url]
 
+## API Docs: [nhz-io.github.io/cnl][gh-pages]
+
 ## Install
 ```
 npm install --save cnl
@@ -82,3 +84,4 @@ VERSION
 [dist-browser-js-url]: cnl.js
 [min-dist-browser-js-url]: cnl.min.js
 [pack-min-dist-browser-js-url]: cnl.pack.min.js
+[gh-pages]: https://nhz-io.github.io/cnl
