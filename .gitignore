@@ -2,6 +2,7 @@ node_modules/
 build/
 dist/
 doc/
+docs/
 npm-debug.log
 *.sublime-workspace
 *.log
