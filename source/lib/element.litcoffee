@@ -1,4 +1,6 @@
 # CLASS: Element
+* Extends: [Evented][Evented]
+
 Visual Element
 
     Event = require './event'
@@ -83,3 +85,5 @@ Visual Element
           type:'render', target:this, context:context, args:args
         if children = @children then (child.render context for child in children)
         return this
+
+[Evented]: ./evented.litcoffee
