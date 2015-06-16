@@ -22,12 +22,44 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h1 id="class-event">CLASS: Event</h1>
-<p>Light Event.</p>
+<ul>
+<li>Extends: <a href="./base">Base</a></li>
+</ul>
+<p>Base event class. The design has been influenced by <a href="http://www.w3.org/TR/DOM-Level-2-Events/events.html">DOM Events</a>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Event</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">base</span>'</span>
-  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {}, callback)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Event</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">base</span>'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>The Event class does not have any methods that affect the state of the
+system somehow (Besides the constructor and state setters). It was primarily
+intended to serve as an envelope for the data.</p>
+<h2 id="constructor">CONSTRUCTOR</h2>
+<h3 id="new-event-args-callback-">new Event(args, callback)</h3>
+<h3 id="new-event-type-callback-">new Event(type, callback)</h3>
+<ul>
+<li>Returns: <a href="./event">Event</a></li>
+</ul>
+<p>Create the event. All the key-value pairs from <strong>args</strong> will be copied
+to the event instance. If <strong>callback</strong> is provided in the <strong>args</strong>, it
+will override the <strong>callback</strong> provided as the second argument.</p>
+<p>Upon instance creation, the event will log it’s creation timestamp. This
+can be disabled by passing <code>timestamp:null</code> to constructor.</p>
+<p>Any Event instance at its minimum will have <strong>timestamp</strong> property. This
+is the only mandatory property.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {}, callback)</span> -&gt;</span>
     <span class="hljs-keyword">if</span> <span class="hljs-keyword">typeof</span> args <span class="hljs-keyword">is</span> <span class="hljs-string">'string'</span> <span class="hljs-keyword">then</span> args = <span class="hljs-attribute">type</span>:args <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">if</span> (arguments.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">typeof</span> args <span class="hljs-keyword">is</span> <span class="hljs-string">'function'</span>
         callback = args
@@ -37,20 +69,246 @@
 
     <span class="hljs-property">@callback</span> = callback <span class="hljs-keyword">if</span> callback <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> <span class="hljs-property">@callback</span>
 
-    <span class="hljs-keyword">unless</span> args.hasOwnProperty <span class="hljs-string">'timestamp'</span>
+    <span class="hljs-keyword">if</span> (args.timestamp <span class="hljs-keyword">is</span> <span class="hljs-literal">true</span>) <span class="hljs-keyword">or</span> <span class="hljs-keyword">not</span> args.hasOwnProperty <span class="hljs-string">'timestamp'</span>
       date = Date.now()
       perf = performance?.now() <span class="hljs-keyword">or</span> <span class="hljs-number">0</span>
-      <span class="hljs-property">@timestamp</span> = <span class="hljs-number">1000</span> * date + Math.floor <span class="hljs-number">1000</span> * (perf - Math.floor perf)
+      <span class="hljs-property">@timestamp</span> = <span class="hljs-number">1000</span> * date + Math.floor <span class="hljs-number">1000</span> * (perf - Math.floor perf)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h3 id="parameters">PARAMETERS</h3>
+<p><strong>args</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - event data</li>
+</ul>
+<p><strong>args.type</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - event type</li>
+</ul>
+<p><strong>args.callback</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> - event completion callback</li>
+<li>Optional</li>
+<li>Overrides the <strong>callback</strong> parameter</li>
+</ul>
+<p><strong>args.timestamp</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - set to <code>false</code> to disable the timestamp calculation</li>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> - event timestamp</li>
+</ul>
+<p><strong>type</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - event type</li>
+</ul>
+<p><strong>callback</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> - event completion callback</li>
+<li>Optional</li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">start</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@started</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2 id="properties">PROPERTIES</h2>
+<h3 id="-type">#type</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - event type</li>
+</ul>
+<h3 id="-timestamp">#timestamp</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> - event creation timestamp</li>
+</ul>
+<h3 id="-callback">#callback</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a> - event completion callback</li>
+</ul>
+<h3 id="-started">#started</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - event <strong>started</strong> flag</li>
+</ul>
+<h3 id="-stopped">#stopped</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - event <strong>stopped</strong> flag</li>
+</ul>
+<h3 id="-canceled">#canceled</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - event <strong>canceled</strong> flag</li>
+</ul>
+<h3 id="-aborted">#aborted</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - event <strong>aborted</strong> flag</li>
+</ul>
+<h3 id="-done">#done</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">Boolean</a> - event <strong>done</strong> flag</li>
+</ul>
+<hr>
 
-  <span class="hljs-attribute">stop</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@stopped</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2 id="methods">METHODS</h2>
+<h3 id="-start-">#start()</h3>
+<ul>
+<li>Returns <a href="./event">Event</a></li>
+</ul>
+<p><strong>started</strong> flag setter</p>
 
-  <span class="hljs-attribute">cancel</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@canceled</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">start</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@started</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <hr>
 
-  <span class="hljs-attribute">abort</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@aborted</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3 id="-stop-">#stop()</h3>
+<ul>
+<li>Returns <a href="./event">Event</a></li>
+</ul>
+<p><strong>stopped</strong> flag setter</p>
 
-  <span class="hljs-attribute">finish</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@done</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span></pre></div></div>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">stop</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@stopped</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3 id="-cancel-">#cancel()</h3>
+<ul>
+<li>Returns <a href="./event">Event</a></li>
+</ul>
+<p><strong>canceled</strong> flag setter</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">cancel</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@canceled</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h3 id="-abort-">#abort()</h3>
+<ul>
+<li>Returns <a href="./event">Event</a></li>
+</ul>
+<p><strong>aborted</strong> flag setter</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">abort</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@aborted</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h3 id="finish-">finish()</h3>
+<ul>
+<li>Returns <a href="./event">Event</a></li>
+</ul>
+<p><strong>done</strong> flag setter</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">finish</span>: <span class="hljs-function">-&gt;</span> (<span class="hljs-property">@done</span> = <span class="hljs-literal">yes</span>) <span class="hljs-keyword">and</span> <span class="hljs-keyword">this</span></pre></div></div>
             
         </li>
         
