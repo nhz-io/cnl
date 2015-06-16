@@ -91,12 +91,13 @@ $.gulp.task 'docco', ['clean', 'lint'], ->
     .pipe $.buffer()
     .pipe $.map (file, callback) ->
       links = ''
-      data = file.contents.toString 'utf8'
-      for link in (data.match /^(\[.+\]:.+)$/gm) or []
+      data = (file.contents.toString 'utf8').replace /^(\[.+\]:.+)$/gm, (match, link) ->
         links += link.replace /^(\[.+?\]:\s*(?!\/\/)[-._a-z0-9\/]+)litcoffee/gmi, "$1html"
         links += "\n"
+        return ''
       if links then file.contents = new Buffer data.replace /(^#{1,6}.+?$)/gmi, "$1\n#{links}\n"
       callback null, file
+      console.log "LINKS", links
     .pipe $.docco()
     .pipe $.gulp.dest _.doc
 
