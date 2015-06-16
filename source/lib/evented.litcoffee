@@ -1,7 +1,7 @@
 # CLASS: Evented
 * Extends: [Node][Node]
 
-Event Subsystem.
+Event delivery Subsystem.
 
     Event = require './event'
     module.exports = class Evented extends require './node'
@@ -97,9 +97,7 @@ Only if the first argument to removeListener is an [Object][Object]
 ### #dispatchEvent(event)
 * Returns: [Evented][Evented]
 
-Dispatch the event to registered listeners. The group of listeners 
-(capturing/non-capturing) is determined from the event phase.
-Aborted and not enabled events will be ignored.
+Event dispatcher. Dispatches the event to appropriate listener
 
       dispatchEvent: (event) ->
         if (type = event?.type) and @event[type] and not event.aborted
