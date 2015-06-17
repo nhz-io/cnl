@@ -71,11 +71,18 @@ is the only mandatory property.
 ### #type
 * Type: [String][String] - event type
 
+### #phase
+* Type: [Number][Number] - event phase (1..3)
+
 ### #timestamp
 * Type: [Number][Number] - event creation timestamp
 
 ### #callback
 * Type: [Function][Function] - event completion callback
+
+---
+
+## FLAGS
 
 ### #started
 * Type: [Boolean][Boolean] - event **started** flag
@@ -93,6 +100,7 @@ is the only mandatory property.
 * Type: [Boolean][Boolean] - event **done** flag
 
 ---
+
 ## METHODS
 
 ### #start()
@@ -103,6 +111,7 @@ is the only mandatory property.
       start: -> (@started = yes) and this
 
 ---
+
 ### #stop()
 * Returns [Event][Event]
 
@@ -111,6 +120,7 @@ is the only mandatory property.
       stop: -> (@stopped = yes) and this
 
 ---
+
 ### #cancel()
 * Returns [Event][Event]
 
@@ -119,6 +129,7 @@ is the only mandatory property.
       cancel: -> (@canceled = yes) and this
 
 ---
+
 ### #abort()
 * Returns [Event][Event]
 
@@ -127,6 +138,7 @@ is the only mandatory property.
       abort: -> (@aborted = yes) and this
 
 ---
+
 ### finish()
 * Returns [Event][Event]
 
