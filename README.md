@@ -38,6 +38,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.23
+* Fixed shape helper calls (naming)
+
 #### 0.0.22
 * Migrated to litcoffee
 * Added tons of annotations

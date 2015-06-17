@@ -4,7 +4,7 @@
 A drawable shape class.
 
     Event = require './event'
-    zonesFromEvent = require '../helper/zones-from-point'
+    findPointZones = require '../helper/find-point-zones'
 
     module.exports = class Shape extends require './element'
 
@@ -51,7 +51,7 @@ Capture **mousemove** events passing through this shape
 
 Get shape zones which match the event and store them in the event (for later).
 
-        if (zones = @getEventZones event)
+        if (zones = findPointZones event.localX, event.localY, this)
           event.zones = zones
 
 Set the shape state to the first matching zone name in order.
@@ -81,7 +81,7 @@ Capture **mousedown** events passing through this shape
 
 Get shape zones which match the event and store them in the event (for later).
 
-        if (zones = @getEventZones event)
+        if (zones = findPointZones event.localX, event.localY, this)
           event.zones = zones
 
 Set the shape state to the first matching zone name in order
@@ -111,7 +111,7 @@ Capture **mouseup** events passing through this shape
 
 Get shape zones which match the event and store them in the event (for later).
 
-        if zones = @getEventZones event
+        if zones = findPointZones event.localX, event.localY, this
           event.zones = zones
 
 Set the shape state to the first matching zone name in order
