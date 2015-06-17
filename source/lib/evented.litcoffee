@@ -101,7 +101,7 @@ Only if the first argument to removeListener is an [Object][Object]
 Event dispatcher. Dispatches the event to appropriate listener
 
       dispatchEvent: (event) ->
-        if (type = event?.type) and @event[type] and not event.aborted
+        if (type = event?.type) and @events[type] and not event.aborted
           phase = event.phase
           if phase > 0 and phase < 3 and listeners = @listeners[2-phase][type]
             event.start()
