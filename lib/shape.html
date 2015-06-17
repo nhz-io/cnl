@@ -30,7 +30,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>Event = <span class="hljs-built_in">require</span> <span class="hljs-string">'./event'</span>
-zonesFromEvent = <span class="hljs-built_in">require</span> <span class="hljs-string">'../helper/zones-from-point'</span>
+findPointZones = <span class="hljs-built_in">require</span> <span class="hljs-string">'../helper/find-point-zones'</span>
 
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">element</span>'</span></pre></div></div>
             
@@ -166,7 +166,7 @@ event propagation if the event <strong>type</strong> is not enabled (Only one li
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (zones = <span class="hljs-property">@getEventZones</span> event)
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (zones = findPointZones event.localX, event.localY, <span class="hljs-keyword">this</span>)
       event.zones = zones</pre></div></div>
             
         </li>
@@ -253,7 +253,7 @@ event propagation if the event <strong>type</strong> is not enabled (Only one li
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (zones = <span class="hljs-property">@getEventZones</span> event)
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (zones = findPointZones event.localX, event.localY, <span class="hljs-keyword">this</span>)
       event.zones = zones</pre></div></div>
             
         </li>
@@ -340,7 +340,7 @@ event propagation if the event <strong>type</strong> is not enabled (Only one li
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> zones = <span class="hljs-property">@getEventZones</span> event
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> zones = findPointZones event.localX, event.localY, <span class="hljs-keyword">this</span>
       event.zones = zones</pre></div></div>
             
         </li>
