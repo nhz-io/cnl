@@ -49,18 +49,18 @@ Capture **mousemove** events passing through this shape
       mousemoveCaptureListener: (event) ->
         super
 
-Get shape zones which match the event
+Get shape zones which match the event and store them in the event (for later).
 
         if (zones = @getEventZones event)
           event.zones = zones
 
-and set the shape state to the first matching zone in order.
+Set the shape state to the first matching zone name in order.
 
           for name in ['active', 'hover', 'normal'] when zones[name]
             state = name
             break
 
-if any state was found make this shape a target of the event (for now)
+If any state was set then make this shape a target of the event (for now)
 
           if (@state = state or null) then event.target = this
         return this
@@ -79,18 +79,18 @@ Capture **mousedown** events passing through this shape
       mousedownCaptureListener: (event) ->
         super
 
-Get shape zones which match the event
+Get shape zones which match the event and store them in the event (for later).
 
         if (zones = @getEventZones event)
           event.zones = zones
 
-and set the shape state to the first matching zone in order
+Set the shape state to the first matching zone name in order
 
           for name in ['active', 'hover', 'normal'] when zones[name]
             state = name
             break
 
-if any state was found make this shape a target of the event (for now)
+If any state was set then make this shape a target of the event (for now)
 
           if (@state = state or null) then event.target = this
         return this
@@ -109,18 +109,18 @@ Capture **mouseup** events passing through this shape
       mouseupCaptureListener: (event) ->
         super
 
-Get shape zones which match the event
+Get shape zones which match the event and store them in the event (for later).
 
         if zones = @getEventZones event
           event.zones = zones
 
-and set the shape state to the first matching zone in order
+Set the shape state to the first matching zone name in order
 
           for name in ['active', 'hover', 'normal'] when zones[name]
             state = name
             break
 
-if any state was found make this shape a target of the event (for now)
+If any state was set then make this shape a target of the event (for now)
 
           if (@state = state or null) then event.target = this
         return this
