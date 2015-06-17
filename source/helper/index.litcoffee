@@ -2,7 +2,7 @@
 
     module.exports =
       localizeEventCoordinates: require './localize-event-coordinates'
-      findPointZones: require './zones-from-point'
+      findPointZones: require './find-point-zones'
 
 ## EXPORTS
 
