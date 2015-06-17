@@ -119,6 +119,8 @@ Event dispatcher. Dispatches the event to appropriate listener
 ### #broadcastEvent(event)
 * Returns: [Evented][Evented]
 
+Process the event, dispatch it to listeners and broadcast to children.
+
       broadcastEvent: (event) ->
 
 No action will be taken if event has no type. This method
@@ -159,7 +161,7 @@ again.
 
             if event.phase is 2 then @dispatchEvent event
 
-At this point the event has finished it's lifecycle if event.source
+At this point the event has finished it's lifecycle. If event.source
 is this instance, so the event callback will be called if the
 event was not aborted or finished or canceled.
 
@@ -171,6 +173,9 @@ event was not aborted or finished or canceled.
         return this
 
 #### PARAMETERS
+
+**event**
+* Type: [Event][Event] - event to broadcast
 
 [Node]: ./node.litcoffee
 [Event]: ./event.litcoffee
