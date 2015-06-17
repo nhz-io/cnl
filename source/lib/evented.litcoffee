@@ -16,7 +16,8 @@ Creates **Evented** instance. Initializes **#listeners** and **#events**
 
       constructor: (args) ->
         super
-        (@events ||= {}) and @events[key] = value for key, value of args?.events
+        @events ||= {}
+        @events[key] = value for key, value of args?.events
         @listeners = [{}, {}]
 
 #### PARAMETERS
