@@ -2,6 +2,10 @@
 * Extends: [Base][Base]
 
 Parent-Child aggregation.
+Any class that requires some kind of parent-child hierarchy,
+must extend this class. A **#children** property will be created
+where the children are stored. [Node][Node] or any subclass instances
+are accepted as children/parents.
 
     module.exports = class Node extends require './base'
 

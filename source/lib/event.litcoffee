@@ -1,16 +1,18 @@
 # CLASS: Event
 * Extends: [Base][Base]
+* Parent: [lib][lib]
 
-Base event class. The design has been influenced by [DOM Events][DOMEvents].
-  
+This class provides a data transport between instances of [Evented][Evented].
+Any instance of this class must have at least the **type** property set
+so that [Evented][Evented] methods will not drop it. This class does not provide
+any functionality and mostly saves as the envelope for data.
+
       module.exports = class Event extends require './base'
-
-The Event class does not have any methods that affect the state of the
-system somehow (Besides the constructor and state setters). It was primarily
-intended to serve as an envelope for the data.
 
 ## CONSTRUCTOR
 
+### new Event(type)
+### new Event(callback)
 ### new Event(args, callback)
 ### new Event(type, callback)
 
@@ -26,15 +28,30 @@ can be disabled by passing `timestamp:null` to constructor.
 Any Event instance at its minimum will have **timestamp** property. This
 is the only mandatory property.
 
+Create Event instance, accepting arguments in multiple forms.
+
       constructor: (args = {}, callback) ->
-        if typeof args is 'string' then args = type:args else
-          if (arguments.length < 2) and typeof args is 'function'
+
+Set the event type to the value of the first argument if it is a [String][String]
+
+        if typeof args is 'string' then args = type:args 
+
+Otherwise, set the `args` to empty [Object][Object] and `callback` to the value of the
+first argument if it is a [Function][Function].
+
+        else if (arguments.length < 2) and typeof args is 'function'
             callback = args
             args = {}
 
+Copy contents of args into this instance
+
         this[key] = value for key, value of args
 
+Overwrite the **#callback** only if it is not set.
+
         @callback = callback if callback and not @callback
+
+Calculate and set the event creation timestamp if it was not disabled or set from **args**
 
         if (args.timestamp is true) or not args.hasOwnProperty 'timestamp'
           date = Date.now()
@@ -146,12 +163,12 @@ is the only mandatory property.
 
       finish: -> (@done = yes) and this
 
-[Base]: ./base
-[Event]: ./event
+[lib]: ./index.litcoffee
+[Evented]: ./evented.litcoffee
+[Base]: ./base.litcoffee
+[Event]: ./event.litcoffee
 [Object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
 [String]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 [Function]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function
 [Boolean]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 [Number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
-
-[DOMEvents]: http://www.w3.org/TR/DOM-Level-2-Events/events.html

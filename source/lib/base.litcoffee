@@ -1,6 +1,8 @@
 # CLASS: Base
 
 All classes extend this.
+Primary function of this class is to serve as common base
+for the rest of the classes and to initialize a private variable **#___runtime**
 
     module.exports = class Base
 
