@@ -261,6 +261,7 @@ Will not add duplicates. Will not add listeners if event is not enabled.</p>
 <ul>
 <li>Returns: <a href="./evented.html">Evented</a></li>
 </ul>
+<p>Process the event, dispatch it to listeners and broadcast to children.</p>
 
             </div>
             
@@ -357,7 +358,7 @@ again.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>At this point the event has finished it’s lifecycle if event.source
+              <p>At this point the event has finished it’s lifecycle. If event.source
 is this instance, so the event callback will be called if the
 event was not aborted or finished or canceled.</p>
 
@@ -380,6 +381,10 @@ event was not aborted or finished or canceled.</p>
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong></p>
+<ul>
+<li>Type: <a href="./event.html">Event</a> - event to broadcast</li>
+</ul>
 
             </div>
             

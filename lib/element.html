@@ -25,12 +25,10 @@
 <ul>
 <li>Extends: <a href="./evented.html">Evented</a></li>
 </ul>
-<p>Visual Element</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>Event = <span class="hljs-built_in">require</span> <span class="hljs-string">'./event'</span>
-
 localizeEventCoordinates = <span class="hljs-built_in">require</span> <span class="hljs-string">'../helper/localize-event-coordinates'</span>
 
 <span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Element</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">evented</span>'</span></pre></div></div>
@@ -44,12 +42,18 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h2 id="-">*</h2>
+              <p>Visual Element</p>
+<h2 id="constructor">CONSTRUCTOR</h2>
+<h3 id="new-element-args-">new Element(args)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Creates a new Element instance</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-property">@constructor</span> Element
-    <span class="hljs-property">@param</span> {Object} args</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {})</span> -&gt;</span>
+    <span class="hljs-keyword">super</span></pre></div></div>
             
         </li>
         
@@ -60,26 +64,12 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h1 id="-">#</h1>
+              <p>optionally setting <strong>origin</strong>, <strong>size</strong>, <strong>state</strong> and <strong>style</strong>.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">constructor</span>: <span class="hljs-function"><span class="hljs-params">(args = {})</span> -&gt;</span>
-    <span class="hljs-keyword">super</span>
-    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> [<span class="hljs-string">'origin'</span>, <span class="hljs-string">'size'</span>, <span class="hljs-string">'state'</span>, <span class="hljs-string">'style'</span>]
-      <span class="hljs-keyword">this</span>[key] = args[key] <span class="hljs-keyword">if</span> args[key]
-
-    (<span class="hljs-property">@styles</span> ||= {}) <span class="hljs-keyword">and</span> <span class="hljs-property">@styles</span>[key] = value <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">of</span> args.styles
-    (<span class="hljs-property">@states</span> ||= {}) <span class="hljs-keyword">and</span> <span class="hljs-property">@states</span>[key] = value <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">of</span> args.states
-
-    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">'mousemove'</span>, <span class="hljs-string">'mousedown'</span>, <span class="hljs-string">'mouseup'</span>, <span class="hljs-string">'update'</span>, <span class="hljs-string">'render'</span>]
-      <span class="hljs-keyword">do</span> (name) =&gt;
-        <span class="hljs-property">@addListener</span> name, <span class="hljs-function">(<span class="hljs-params">(e)</span> -&gt;</span> e.stop() <span class="hljs-keyword">unless</span> <span class="hljs-property">@events</span>?[name]), <span class="hljs-literal">yes</span>
-        <span class="hljs-property">@addListener</span> name, <span class="hljs-function">(<span class="hljs-params">(e)</span> -&gt;</span> e.stop() <span class="hljs-keyword">unless</span> <span class="hljs-property">@events</span>?[name]), <span class="hljs-literal">no</span>
-
-    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">'mousemove'</span>, <span class="hljs-string">'mousedown'</span>, <span class="hljs-string">'mouseup'</span>]
-      <span class="hljs-property">@addListener</span> name, <span class="hljs-keyword">this</span>[<span class="hljs-string">"<span class="hljs-subst">#{name}</span>CaptureListener"</span>], <span class="hljs-literal">yes</span>
-      <span class="hljs-property">@addListener</span> name, <span class="hljs-keyword">this</span>[<span class="hljs-string">"<span class="hljs-subst">#{name}</span>Listener"</span>], <span class="hljs-literal">no</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> [<span class="hljs-string">'origin'</span>, <span class="hljs-string">'size'</span>, <span class="hljs-string">'state'</span>, <span class="hljs-string">'style'</span>]
+      <span class="hljs-keyword">this</span>[key] = args[key] <span class="hljs-keyword">if</span> args[key]</pre></div></div>
             
         </li>
         
@@ -90,14 +80,12 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h2 id="-memberof-element-">* @memberof Element#</h2>
+              <p>Copy <strong>styles</strong> and <strong>states</strong> if they were passed in <strong>args</strong></p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousemoveCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
-    <span class="hljs-property">@___runtime</span>.mousemoveEvent = event
-    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    (<span class="hljs-property">@styles</span> ||= {}) <span class="hljs-keyword">and</span> <span class="hljs-property">@styles</span>[key] = value <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">of</span> args.styles
+    (<span class="hljs-property">@states</span> ||= {}) <span class="hljs-keyword">and</span> <span class="hljs-property">@states</span>[key] = value <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">of</span> args.states</pre></div></div>
             
         </li>
         
@@ -108,13 +96,15 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h2 id="-">*</h2>
+              <p>Register capturing and non-capturing validation listeners. Those will stop the
+event propagation if the event <strong>type</strong> is not enabled.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    * <span class="hljs-property">@method</span> mousedownCaptureListener
-    * <span class="hljs-property">@memberof</span> Element<span class="hljs-comment">#</span>
-    * <span class="hljs-property">@param</span> {Event} event</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">'mousemove'</span>, <span class="hljs-string">'mousedown'</span>, <span class="hljs-string">'mouseup'</span>, <span class="hljs-string">'update'</span>, <span class="hljs-string">'render'</span>]
+      <span class="hljs-keyword">do</span> (name) =&gt;
+        <span class="hljs-property">@addListener</span> name, <span class="hljs-function">(<span class="hljs-params">(e)</span> -&gt;</span> e.stop() <span class="hljs-keyword">unless</span> <span class="hljs-property">@events</span>?[name]), <span class="hljs-literal">yes</span>
+        <span class="hljs-property">@addListener</span> name, <span class="hljs-function">(<span class="hljs-params">(e)</span> -&gt;</span> e.stop() <span class="hljs-keyword">unless</span> <span class="hljs-property">@events</span>?[name]), <span class="hljs-literal">no</span></pre></div></div>
             
         </li>
         
@@ -125,15 +115,14 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h1 id="-">#</h1>
+              <p>Register capturing and non-capturing extendable listeners. Those listeners
+can be extended on subclasses.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  <span class="hljs-attribute">mousedownCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
-    <span class="hljs-property">@___runtime</span>.mousedownEvent = event
-    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">'mousemove'</span>, <span class="hljs-string">'mousedown'</span>, <span class="hljs-string">'mouseup'</span>]
+      <span class="hljs-property">@addListener</span> name, <span class="hljs-keyword">this</span>[<span class="hljs-string">"<span class="hljs-subst">#{name}</span>CaptureListener"</span>], <span class="hljs-literal">yes</span>
+      <span class="hljs-property">@addListener</span> name, <span class="hljs-keyword">this</span>[<span class="hljs-string">"<span class="hljs-subst">#{name}</span>Listener"</span>], <span class="hljs-literal">no</span></pre></div></div>
             
         </li>
         
@@ -144,13 +133,60 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h2 id="-">*</h2>
+              <h3 id="parameters">PARAMETERS</h3>
+<p><strong>args</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - constructor arguments</li>
+</ul>
+<p><strong>args.origin</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - element origin</li>
+<li>Optional</li>
+</ul>
+<p><strong>args.origin.x</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> - element origin x coordinate</li>
+</ul>
+<p><strong>args.origin.y</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> - element origin y coordinate</li>
+</ul>
+<p><strong>args.size</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - element size</li>
+<li>Optional</li>
+</ul>
+<p><strong>args.size.width</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> - element width</li>
+</ul>
+<p><strong>args.size.height</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a> - element height</li>
+</ul>
+<p><strong>args.state</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - the name of currently active state</li>
+<li>Optional</li>
+</ul>
+<p><strong>args.style</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a> - the name of currently active style</li>
+<li>Optional</li>
+</ul>
+<p><strong>args.state</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - collection of named states</li>
+<li>Optional</li>
+</ul>
+<p><strong>args.style</strong></p>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - collection of named styles</li>
+<li>Optional</li>
+</ul>
+<hr>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>    * <span class="hljs-property">@method</span> mouseupCaptureListener
-    * <span class="hljs-property">@memberof</span> Element<span class="hljs-comment">#</span>
-    * <span class="hljs-property">@param</span> {Event} event</pre></div></div>
             
         </li>
         
@@ -161,21 +197,16 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <h1 id="-">#</h1>
+              <h2 id="methods">METHODS</h2>
+<h3 id="-mousemovecapturelistener-event-">#mousemoveCaptureListener(event)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable default mousemoveCaptureListener</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  <span class="hljs-attribute">mouseupCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
-    <span class="hljs-property">@___runtime</span>.mouseupEvent = event
-    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>
-
-  <span class="hljs-attribute">mousedownListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span>
-
-  <span class="hljs-attribute">mouseupListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span>
-
-  <span class="hljs-attribute">mousemoveListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousemoveCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span></pre></div></div>
             
         </li>
         
@@ -186,13 +217,13 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <h2 id="-">*</h2>
+              <p>Store the event in runtime for later and localize event coordinates</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    * <span class="hljs-property">@method</span> update
-    * <span class="hljs-property">@memberof</span> Element
-    * <span class="hljs-property">@param</span> {Object} args</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-property">@___runtime</span>.mousemoveEvent = event
+    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
             
         </li>
         
@@ -203,15 +234,12 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <h1 id="-">#</h1>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong>
+Type: <a href="./event.html">Event</a></p>
+<hr>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-  <span class="hljs-attribute">update</span>: <span class="hljs-function"><span class="hljs-params">(args)</span> -&gt;</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.update <span class="hljs-keyword">then</span> <span class="hljs-property">@broadcastEvent</span> <span class="hljs-keyword">new</span> Event
-      <span class="hljs-attribute">type</span>:<span class="hljs-string">'update'</span>, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>, <span class="hljs-attribute">args</span>:args
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
             
         </li>
         
@@ -222,13 +250,15 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <h2 id="-">*</h2>
+              <h3 id="-mousedowncapturelistener-event-">#mousedownCaptureListener(event)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable default mousedownCaptureListener</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    * <span class="hljs-property">@method</span> render
-    * <span class="hljs-property">@memberof</span> Element
-    * <span class="hljs-property">@param</span> {CanvasRenderingContext2D} context</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousedownCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span></pre></div></div>
             
         </li>
         
@@ -239,16 +269,288 @@ localizeEventCoordinates = <span class="hljs-built_in">require</span> <span clas
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <h1 id="-">#</h1>
+              <p>Store the event in runtime for later and localize event coordinates</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  <span class="hljs-attribute">render</span>: <span class="hljs-function"><span class="hljs-params">(context)</span> -&gt;</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.render <span class="hljs-keyword">then</span> <span class="hljs-property">@broadcastEvent</span> <span class="hljs-keyword">new</span> Event
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-property">@___runtime</span>.mousedownEvent = event
+    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong>
+Type: <a href="./event.html">Event</a></p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h3 id="-mouseupcapturelistener-event-">#mouseupCaptureListener(event)</h3>
+<p>Extendable default mouseupCaptureListener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mouseupCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Store the event in runtime for later and localize event coordinates</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-property">@___runtime</span>.mouseupEvent = event
+    localizeEventCoordinates event, <span class="hljs-property">@origin</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong>
+Type: <a href="./event.html">Event</a></p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h3 id="mousedownlistener-event-">mousedownListener(event)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable mousedownListener stub</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousedownListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong>
+Type: <a href="./event.html">Event</a>      </p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h3 id="mouseuplistener-event-">mouseupListener(event)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable mouseupListener stub</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mouseupListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong>
+Type: <a href="./event.html">Event</a></p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h3 id="mousemovelistener-event-">mousemoveListener(event)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable mousemoveListener stub</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousemoveListener</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong>
+Type: <a href="./event.html">Event</a></p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <h3 id="-update-args-">#update(args)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable default updater.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">update</span>: <span class="hljs-function"><span class="hljs-params">(args)</span> -&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Broadcasts update event to itself if update event is enabled</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.update <span class="hljs-keyword">then</span> <span class="hljs-property">@broadcastEvent</span> <span class="hljs-keyword">new</span> Event
+      <span class="hljs-attribute">type</span>:<span class="hljs-string">'update'</span>, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>, <span class="hljs-attribute">args</span>:args
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>args</strong>
+Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - arbitrary data for update</p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h3 id="-render-context-">#render(context)</h3>
+<ul>
+<li>Returns: <a href="./element.html">Element</a></li>
+</ul>
+<p>Extendable default renderer.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">render</span>: <span class="hljs-function"><span class="hljs-params">(context)</span> -&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Broadcasts render event to itself if render event is enabled, then
+render is called for every child element with the same context argument</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.render <span class="hljs-keyword">then</span> <span class="hljs-property">@broadcastEvent</span> <span class="hljs-keyword">new</span> Event
       <span class="hljs-attribute">type</span>:<span class="hljs-string">'render'</span>, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>, <span class="hljs-attribute">context</span>:context, <span class="hljs-attribute">args</span>:args
     <span class="hljs-keyword">if</span> children = <span class="hljs-property">@children</span> <span class="hljs-keyword">then</span> (child.render context <span class="hljs-keyword">for</span> child <span class="hljs-keyword">in</span> children)
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>context</strong>
+Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - a context to render in</p>
+
+            </div>
             
         </li>
         
