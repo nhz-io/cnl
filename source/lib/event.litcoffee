@@ -7,7 +7,7 @@ Any instance of this class must have at least the **type** property set
 so that [Evented][Evented] methods will not drop it. This class does not provide
 any functionality and mostly saves as the envelope for data.
 
-      module.exports = class Event extends require './base'
+    module.exports = class Event extends require './base'
 
 ## CONSTRUCTOR
 
@@ -30,33 +30,33 @@ is the only mandatory property.
 
 Create Event instance, accepting arguments in multiple forms.
 
-        constructor: (args = {}, callback) ->
+      constructor: (args = {}, callback) ->
 
 Set the event type to the value of the first argument if it is a [String][String]
 
-          if typeof args is 'string' then args = type:args
+        if typeof args is 'string' then args = type:args
 
 Otherwise, set the `args` to empty [Object][Object] and `callback` to the value of the
 first argument if it is a [Function][Function].
 
-          else if (arguments.length < 2) and typeof args is 'function'
-            callback = args
-            args = {}
+        else if (arguments.length < 2) and typeof args is 'function'
+          callback = args
+          args = {}
 
 Copy contents of args into this instance
 
-          this[key] = value for key, value of args
+        this[key] = value for key, value of args
 
 Overwrite the **#callback** only if it is not set.
 
-          @callback = callback if callback and not @callback
+        @callback = callback if callback and not @callback
 
 Calculate and set the event creation timestamp if it was not disabled or set from **args**
 
-          if (args.timestamp is true) or not args.hasOwnProperty 'timestamp'
-            date = Date.now()
-            perf = performance?.now() or 0
-            @timestamp = 1000 * date + Math.floor 1000 * (perf - Math.floor perf)
+        if (args.timestamp is true) or not args.hasOwnProperty 'timestamp'
+          date = Date.now()
+          perf = performance?.now() or 0
+          @timestamp = 1000 * date + Math.floor 1000 * (perf - Math.floor perf)
 
 ### PARAMETERS
 **args**
@@ -125,7 +125,7 @@ Calculate and set the event creation timestamp if it was not disabled or set fro
 
 **started** flag setter
 
-        start: -> (@started = yes) and this
+      start: -> (@started = yes) and this
 
 ---
 
@@ -134,7 +134,7 @@ Calculate and set the event creation timestamp if it was not disabled or set fro
 
 **stopped** flag setter
 
-        stop: -> (@stopped = yes) and this
+      stop: -> (@stopped = yes) and this
 
 ---
 
@@ -143,7 +143,7 @@ Calculate and set the event creation timestamp if it was not disabled or set fro
 
 **canceled** flag setter
 
-        cancel: -> (@canceled = yes) and this
+      cancel: -> (@canceled = yes) and this
 
 ---
 
@@ -152,7 +152,7 @@ Calculate and set the event creation timestamp if it was not disabled or set fro
 
 **aborted** flag setter
 
-        abort: -> (@aborted = yes) and this
+      abort: -> (@aborted = yes) and this
 
 ---
 
@@ -161,7 +161,7 @@ Calculate and set the event creation timestamp if it was not disabled or set fro
 
 **done** flag setter
 
-        finish: -> (@done = yes) and this
+      finish: -> (@done = yes) and this
 
 [lib]: ./index.litcoffee
 [Evented]: ./evented.litcoffee
