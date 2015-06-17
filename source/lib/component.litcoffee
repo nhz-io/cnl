@@ -53,8 +53,8 @@ If component is grabbed then set the state to **active**.
 Create **drag** Event and broadcast it to this component if drag event is enabled,
 
           if @events?.drag
-            @broadcastEvent $.dragEvent = new Event type:'drag',
-              x:event.x, y:event.y, target:this
+            @broadcastEvent new Event 
+              type:'drag', x:event.x, y:event.y
 
 setting the drag offset.
 
@@ -96,8 +96,8 @@ If release event is enabled then create **release** Event, save it
 and deliver it to this component, 
 
           if @events?.release
-            @broadcastEvent $.releaseEvent = new Event type:'release',
-              x:event.x, y:event.y, target:this
+            @broadcastEvent $.releaseEvent = new Event 
+              type:'release', x:event.x, y:event.y
 
 Update the **#state** to the first matching zone name in order
 
@@ -117,8 +117,8 @@ Update the **#state** to the first matching zone name in order
 
 Receive **mousedown** event.
 
-      mousedownListener: (event) ->
-        super
+      mousedownListener: (event) ->        
+        super        
 
 If component is in active state and **grab** event is enabled then grab this component.
 
@@ -126,9 +126,10 @@ If component is in active state and **grab** event is enabled then grab this com
           ($ = @___runtime).grab = true
 
 Create **grab** event and deliver it to this component.
-
-          @broadcastEvent $.grabEvent = new Event type:'grab',
-            x:event.x, y:event.y, target:this
+          
+          @broadcastEvent new Event 
+            type:'grab', x:event.x, y:event.y
+          
         return this
 
 #### PARAMETERS
@@ -164,6 +165,7 @@ Capture **grab** events passing through this component.
 Save the event and localize event coordinates.
 
         @___runtime.grabEvent = event
+        return 
         localizeEventCoordinates event, @origin
         return this
 

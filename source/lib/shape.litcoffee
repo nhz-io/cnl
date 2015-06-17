@@ -51,7 +51,7 @@ Capture **mousemove** events passing through this shape
 
 Get shape zones which match the event and store them in the event (for later).
 
-        if (zones = findPointZones event.localX, event.localY, this)
+        if (zones = findPointZones event.localX, event.localY, @zones)
           event.zones = zones
 
 Set the shape state to the first matching zone name in order.
@@ -81,7 +81,7 @@ Capture **mousedown** events passing through this shape
 
 Get shape zones which match the event and store them in the event (for later).
 
-        if (zones = findPointZones event.localX, event.localY, this)
+        if (zones = findPointZones event.localX, event.localY, @zones)
           event.zones = zones
 
 Set the shape state to the first matching zone name in order
@@ -111,7 +111,7 @@ Capture **mouseup** events passing through this shape
 
 Get shape zones which match the event and store them in the event (for later).
 
-        if zones = findPointZones event.localX, event.localY, this
+        if zones = findPointZones event.localX, event.localY, @zones
           event.zones = zones
 
 Set the shape state to the first matching zone name in order

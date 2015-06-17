@@ -38,6 +38,9 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.24
+* Fixed grab event
+
 #### 0.0.23
 * Fixed shape helper calls (naming)
 
