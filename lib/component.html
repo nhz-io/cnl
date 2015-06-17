@@ -169,8 +169,8 @@ event propagation if the event <strong>type</strong> is not enabled.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.drag
-        <span class="hljs-property">@broadcastEvent</span> $.dragEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'drag'</span>,
-          <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span></pre></div></div>
+        <span class="hljs-property">@broadcastEvent</span> <span class="hljs-keyword">new</span> Event 
+          <span class="hljs-attribute">type</span>:<span class="hljs-string">'drag'</span>, <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y</pre></div></div>
             
         </li>
         
@@ -291,8 +291,8 @@ and deliver it to this component, </p>
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> <span class="hljs-property">@events</span>?.release
-        <span class="hljs-property">@broadcastEvent</span> $.releaseEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'release'</span>,
-          <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span></pre></div></div>
+        <span class="hljs-property">@broadcastEvent</span> $.releaseEvent = <span class="hljs-keyword">new</span> Event 
+          <span class="hljs-attribute">type</span>:<span class="hljs-string">'release'</span>, <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y</pre></div></div>
             
         </li>
         
@@ -347,7 +347,7 @@ and deliver it to this component, </p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousedownListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousedownListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>        
     <span class="hljs-keyword">super</span></pre></div></div>
             
         </li>
@@ -379,8 +379,9 @@ and deliver it to this component, </p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-property">@broadcastEvent</span> $.grabEvent = <span class="hljs-keyword">new</span> Event <span class="hljs-attribute">type</span>:<span class="hljs-string">'grab'</span>,
-        <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y, <span class="hljs-attribute">target</span>:<span class="hljs-keyword">this</span>
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-property">@broadcastEvent</span> <span class="hljs-keyword">new</span> Event 
+        <span class="hljs-attribute">type</span>:<span class="hljs-string">'grab'</span>, <span class="hljs-attribute">x</span>:event.x, <span class="hljs-attribute">y</span>:event.y
+      
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
             
         </li>
@@ -484,6 +485,7 @@ and deliver it to this component, </p>
             </div>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-property">@___runtime</span>.grabEvent = event
+    <span class="hljs-keyword">return</span> 
     localizeEventCoordinates event, <span class="hljs-property">@origin</span>
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
             
