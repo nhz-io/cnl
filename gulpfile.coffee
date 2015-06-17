@@ -95,7 +95,7 @@ $.gulp.task 'docco', ['clean', 'lint'], ->
         links += link.replace /^(\[.+?\]:\s*(?!\/\/)[-._a-z0-9\/]+)litcoffee/gmi, "$1html"
         links += "\n"
         return ''
-      if links then file.contents = new Buffer data.replace /(^#{1,6}.+?$)/gmi, "$1\n#{links}\n"
+      if links then file.contents = new Buffer data.replace /(^(#{1,6}| {4}).+?$)/gmi, "$1\n#{links}\n"
       callback null, file
     .pipe $.docco()
     .pipe $.gulp.dest _.doc
