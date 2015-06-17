@@ -38,6 +38,12 @@ LICENSE
 
 VERSION
 -------
+#### 0.0.22
+* Migrated to litcoffee
+* Added tons of annotations
+* Refactored the code
+* Fixed few bugs which became clear while annotating
+
 #### 0.0.21
 * lots of refactoring
 * renamed addEventListener to addListener
