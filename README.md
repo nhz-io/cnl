@@ -38,7 +38,7 @@ LICENSE
 
 VERSION
 -------
-#### 0.0.24
+#### 0.0.25
 * Fixed grab event
 
 #### 0.0.23
