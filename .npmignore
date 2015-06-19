@@ -3,6 +3,7 @@ source/
 build/
 doc/
 docs/
+old/
 .git/
 .gitignore
 .editorconfig
