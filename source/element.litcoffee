@@ -62,22 +62,22 @@ Add normal extendable listener
 
 #### PARAMETERS
 * **args**
-* Type: [Object][Object] - named arguments
+    * Type: [Object][Object] - named arguments
 
 * **args.origin**
-* Type: [Object][Object] - origin coordinates
+    * Type: [Object][Object] - origin coordinates
 
 * **args.origin.x**
-* Type: [Number][Number] - x coordinate
+    * Type: [Number][Number] - x coordinate
 
 * **args.origin.y**
-* Type: [Number][Number] - y coordinate
+    * Type: [Number][Number] - y coordinate
 
 * **args.regions** - named regions
-* Type: [Object][Object]
+    * Type: [Object][Object]
 
 * **args.regions.{NAME}**
-* Type: [Array][Array] - [x, y, width, height]
+    * Type: [Array][Array] - [x, y, width, height]
 
 ---
 
@@ -85,14 +85,14 @@ Add normal extendable listener
 
 ### #origin
 * Type: [Object][Object] - origin coordinates
-    * **x**
-      * Type: [Number][Number] - x coordinate
-    * **y**
-      * Type: [Number][Number] - y coordinate
+* **x**
+  * Type: [Number][Number] - x coordinate
+* **y**
+  * Type: [Number][Number] - y coordinate
 
 ### #regions
-* Type: [Object][Object]
-    * **{NAME}**
+* Type: [Object][Object] - region name/value pairs
+* **{REGION NAME}**
     * Type: [Array][Array] - [x, y, width, height]
 
 ---
