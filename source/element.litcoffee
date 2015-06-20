@@ -10,12 +10,22 @@ A visual element.
 
 ## CONSTRUCTOR
 
-### new Element()
+### new Element(args)
 
 Creates an Element instance.
 
       constructor: ->
         super
+
+Copy the element origin if it was set from named arguments
+
+        if @origin then @origin = x:(@origin.x or 0), y:(@origin.y or 0)
+
+Copy the element regions if they were set from named arguments
+
+        if regions = @regions
+          @regions = {}
+          @regions[name] = region for name, region of regions
 
 Register validating listeners for each **type** from the list.
 
@@ -42,19 +52,47 @@ Register extendable listeners for each **type** from the list.
         for type in ['mousemove', 'mousedown', 'mouseup']
 
 Add capturing extendable listener
-          
+
           @addListener type, this["#{type}CaptureListener"], yes
 
 Add normal extendable listener
-          
+
           @addListener type, this["#{type}Listener"], no
 
 #### PARAMETERS
-* **args** - named arguments
+* **args**
+* Type: [Object][Object] - named arguments
+
+* **args.origin**
+* Type: [Object][Object] - origin coordinates
+
+* **args.origin.x**
+* Type: [Number][Number] - x coordinate
+
+* **args.origin.y**
+* Type: [Number][Number] - y coordinate
+
+* **args.regions** - named regions
+* Type: [Object][Object]
+
+* **args.regions.{NAME}**
+* Type: [Array][Array] - [x, y, width, height]
 
 ---
 
 ## PROPERTIES
+
+### #origin
+* Type: [Object][Object] - origin coordinates
+    * **x**
+      * Type: [Number][Number] - x coordinate
+    * **y**
+      * Type: [Number][Number] - y coordinate
+
+### #regions
+* Type: [Object][Object]
+    * **{NAME}**
+    * Type: [Array][Array] - [x, y, width, height]
 
 ---
 
@@ -63,17 +101,17 @@ Add normal extendable listener
 * Returns: [Element][Element]
 
 Helper method, to localize event coordinates.
-    
+
       localizeEventCoordinates: (event) ->
         if event
 
 If event already has localized **x**, use it instead of absolute **x**
 
-          x = (if event.localX? then event.localX else event.x)                  
+          x = (if event.localX? then event.localX else event.x)
           event.localX = x - (@origin?.x or 0)
 
 If event already has localized **y**, use it instead of absolute **y**
-          
+
           y = (if event.localY? then event.localY else event.y)
           event.localY = y - (origin?.y or 0)
 
@@ -84,12 +122,12 @@ If event already has localized **y**, use it instead of absolute **y**
 * Returns: [Object][Object] - named set of matching regions
 
 Helper method, to get element regions that match the event.
-      
+
       getEventRegions: (event) ->
 
 Proceed only if event coordinates are localized
 
-        if event and (x = event.localX)? and (y = event.localY)?          
+        if event and (x = event.localX)? and (y = event.localY)?
           result = {}
 
 Walk through the element regions
@@ -111,7 +149,7 @@ the region rectangle.
 * Returns: [Element][Element]
 
 Extendable capturing **mousemove** listener
-    
+
       mousemoveCaptureListener: (event) ->
 
 Store the event in the runtime for later and localize event coordinates
@@ -143,14 +181,14 @@ Store the event in the runtime for later and localize event coordinates
 * Returns: [Element][Element]
 
 Extendable capturing **mouseup** listener
-      
+
       mouseupCaptureListener: (event) ->
 
 Store the event in the runtime for later and localize event coordinates
-        
+
         @___runtime.mouseupEvent = event
         @localizeEventCoordinates event
-        
+
         return this
 
 ---
@@ -159,7 +197,7 @@ Store the event in the runtime for later and localize event coordinates
 * Returns: [Element][Element]
 
 Extendable **mousemove** listener
-      
+
       mousemoveListener: -> this
 
 ---
@@ -168,7 +206,7 @@ Extendable **mousemove** listener
 * Returns: [Element][Element]
 
 Extendable **mousemove** listener
-      
+
       mousedownListener: -> this
 
 ---
@@ -177,11 +215,13 @@ Extendable **mousemove** listener
 * Returns: [Element][Element]
 
 Extendable **mousemove** listener
-      
-      mouseupListener: -> this
 
+      mouseupListener: -> this
 
 [Element]: ./element
 
 [Parent]: ./index.litcoffee
 [Evented]: https://nhzio.github.com/ecl/evented.html
+[Number]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+[Object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+[Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
