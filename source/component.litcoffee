@@ -4,7 +4,7 @@
 
 ---
 
-    module.exports = class Component extends require 'ecl/dist/evented'
+    module.exports = class Component extends require './element'
 
 ## CONSTRUCTOR
 
@@ -12,7 +12,7 @@
 
 Creates Component instance.
 
-      constructor: (args) ->
+      constructor: -> super
 
 #### PARAMETERS
 * **args** - named arguments
