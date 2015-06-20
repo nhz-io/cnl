@@ -86,22 +86,14 @@ Capture **mousemove** events passing through this shape
       mousemoveCaptureListener: (event) ->
         super
 
+Check if there are any regions which match the event.
+
         if regions = @getEventRegions event
 
-Get shape regions that match the event and store them in the event.
+Store those regions in the event and make this shape an event target
 
           event.regions = regions
-
-Set the shape state to the first matching region name in order.
-
-          for name in ['active', 'hover', 'normal'] when regions[name]
-            state = name
-            break
-
-If any state was set then make this shape a target of the event.
-Reset the state if no region was found.
-
-          if (@state = state or null) then event.target = this
+          event.target = this
 
         return this
 
@@ -120,22 +112,14 @@ Capture **mousedown** events passing through this shape
       mousedownCaptureListener: (event) ->
         super
 
+Check if there are any regions which match the event.
+
         if regions = @getEventRegions event
 
-Get shape regions that match the event and store them in the event.
+Store those regions in the event and make this shape an event target
 
           event.regions = regions
-
-Set the shape state to the first matching region name in order
-
-          for name in ['active', 'hover', 'normal'] when regions[name]
-            state = name
-            break
-
-If any state was set then make this shape a target of the event.
-Reset the state if no region was found.
-
-          if (@state = state or null) then event.target = this
+          event.target = this
 
         return this
 
@@ -153,23 +137,14 @@ Capture **mouseup** events passing through this shape
       mouseupCaptureListener: (event) ->
         super
 
+Check if there are any regions which match the event.
+
         if regions = @getEventRegions event
 
-Get shape regions that match the event and store them in the event.
+Store those regions in the event and make this shape an event target
 
           event.regions = regions
-
-Set the shape state to the first matching region name in order
-
-          for name in ['active', 'hover', 'normal'] when regions[name]
-            state = name
-            break
-
-
-If any state was set then make this shape a target of the event.
-Reset the state if no region was found.
-
-          if (@state = state or null) then event.target = this
+          event.target = this
 
         return this
 
