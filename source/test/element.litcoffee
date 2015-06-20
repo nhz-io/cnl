@@ -13,6 +13,8 @@
           it 'should return an instance of Element', ->
             (new Element).should.be.an.instanceof Element
 
+---
+
 Mousemove capturing listener should store the event in the runtime
 for later use.
 
@@ -26,6 +28,8 @@ for later use.
             (new Element)
               .mousemoveCaptureListener('test')
               .___runtime.mousemoveEvent.should.be.equal 'test'
+
+---
 
 Mousedown capturing listener should store the event in the runtime
 for later use.
@@ -41,6 +45,8 @@ for later use.
               .mousedownCaptureListener('test')
               .___runtime.mousedownEvent.should.be.equal 'test'
 
+---
+
 Mouseup capturing listener should store the event in the runtime
 for later use.
 
@@ -55,7 +61,35 @@ for later use.
               .mouseupCaptureListener('test')
               .___runtime.mouseupEvent.should.be.equal 'test'
 
+---
 
+Mousemove listener. A stub for descendants to call `super` on.
+
+        describe '#mousemoveListener', ->
+          it 'should return the element', ->
+            (element = new Element)
+              .mousemoveCaptureListener()
+              .should.be.equal element
+
+---
+
+Mousedown listener. A stub for descendants to call `super` on.
+
+        describe '#mousedownListener', ->
+          it 'should return the element', ->
+            (element = new Element)
+              .mousedownCaptureListener()
+              .should.be.equal element
+
+---
+
+Mouseup listener. A stub for descendants to call `super` on.
+
+        describe '#mouseupListener', ->
+          it 'should return the element', ->
+            (element = new Element)
+              .mouseupCaptureListener()
+              .should.be.equal element
 
 [Element#constructor]: ../element.litcoffee#constructor
 [Parent]: ./index.litcoffee

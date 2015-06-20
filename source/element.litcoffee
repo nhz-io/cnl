@@ -87,7 +87,7 @@ Store the event in the runtime for later
 
 ---
 
-### #mouseupdCaptureListener(event)
+### #mouseupCaptureListener(event)
 * Returns: [Element][Element]
 
 Extendable capturing **mouseup** listener
@@ -98,6 +98,34 @@ Store the event in the runtime for later
         
         @___runtime.mouseupEvent = event
         return this
+
+---
+
+### #mousemoveListener(event)
+* Returns: [Element][Element]
+
+Extendable **mousemove** listener
+      
+      mousemoveListener: -> this
+
+---
+
+### #mousedownListener(event)
+* Returns: [Element][Element]
+
+Extendable **mousemove** listener
+      
+      mousedownListener: -> this
+
+---
+
+### #mouseupListener(event)
+* Returns: [Element][Element]
+
+Extendable **mousemove** listener
+      
+      mouseupListener: -> this
+
 
 [Element]: ./element
 
