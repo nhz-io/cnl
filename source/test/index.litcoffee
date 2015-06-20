@@ -1,4 +1,4 @@
-# ecl tests
+# cnl tests
 * Parent: [Index][Parent]
 
 ## [Engine Test][EngineTest]
@@ -27,6 +27,16 @@
     test = require './style'
     test (require '../style'), 'Style'
 
-[Engine]: ../evented.litcoffee
-[EngineTest]: ./evented.litcoffee
 [Parent]: ../index.litcoffee
+
+[Engine]: ../engine.litcoffee
+[Element]: ../element.litcoffee
+[Shape]: ../shape.litcoffee
+[Pen]: ../pen.litcoffee
+[Style]: ../style.litcoffee
+
+[EngineTest]: ./engine.litcoffee
+[ElementTest]: ./element.litcoffee
+[ShapeTest]: ./shape.litcoffee
+[PenTest]: ./pen.litcoffee
+[StyleTest]: ./style.litcoffee
