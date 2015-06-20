@@ -54,6 +54,7 @@
     "notest": false
   },
   "dependencies": {
+    "ecl": "0.0.4",
     "extends__": "0.0.8",
     "nhz.lib": "0.0.18"
   }
