@@ -128,7 +128,7 @@ Get shape regions that match the event and store them in the event.
 
 Set the shape state to the first matching region name in order
 
-          for name in ['active', 'hover', 'normal'] when zones[name]
+          for name in ['active', 'hover', 'normal'] when regions[name]
             state = name
             break
 
@@ -161,7 +161,7 @@ Get shape regions that match the event and store them in the event.
 
 Set the shape state to the first matching region name in order
 
-          for name in ['active', 'hover', 'normal'] when zones[name]
+          for name in ['active', 'hover', 'normal'] when regions[name]
             state = name
             break
 
