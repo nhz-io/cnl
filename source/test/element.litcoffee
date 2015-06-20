@@ -112,7 +112,7 @@ Mousemove listener. A stub for descendants to call `super` on.
         describe '#mousemoveListener', ->
           it 'should return the element', ->
             (element = new Element)
-              .mousemoveCaptureListener()
+              .mousemoveListener()
               .should.be.equal element
 
 ---
@@ -122,7 +122,7 @@ Mousedown listener. A stub for descendants to call `super` on.
         describe '#mousedownListener', ->
           it 'should return the element', ->
             (element = new Element)
-              .mousedownCaptureListener()
+              .mousedownListener()
               .should.be.equal element
 
 ---
@@ -132,7 +132,7 @@ Mouseup listener. A stub for descendants to call `super` on.
         describe '#mouseupListener', ->
           it 'should return the element', ->
             (element = new Element)
-              .mouseupCaptureListener()
+              .mouseupListener()
               .should.be.equal element
 
 [Element#constructor]: ../element.litcoffee#constructor
