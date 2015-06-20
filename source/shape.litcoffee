@@ -86,14 +86,14 @@ Capture **mousemove** events passing through this shape
       mousemoveCaptureListener: (event) ->
         super
 
-Check if there are any regions which match the event.
+Proceed only for valid event
 
-        if regions = @getEventRegions event
+        if event
 
-Store those regions in the event and make this shape an event target
+Check if there are any regions that match the event,
+store them in the event and set this shape as event target
 
-          event.regions = regions
-          event.target = this
+          event.target = this if event.regions = @getEventRegions event
 
         return this
 
@@ -112,14 +112,14 @@ Capture **mousedown** events passing through this shape
       mousedownCaptureListener: (event) ->
         super
 
-Check if there are any regions which match the event.
+Proceed only for valid event
 
-        if regions = @getEventRegions event
+        if event
 
-Store those regions in the event and make this shape an event target
+Check if there are any regions that match the event,
+store them in the event and set this shape as event target
 
-          event.regions = regions
-          event.target = this
+          event.target = this if event.regions = @getEventRegions event
 
         return this
 
@@ -137,14 +137,14 @@ Capture **mouseup** events passing through this shape
       mouseupCaptureListener: (event) ->
         super
 
-Check if there are any regions which match the event.
+Proceed only for valid event
 
-        if regions = @getEventRegions event
+        if event
 
-Store those regions in the event and make this shape an event target
+Check if there are any regions that match the event,
+store them in the event and set this shape as event target
 
-          event.regions = regions
-          event.target = this
+          event.target = this if event.regions = @getEventRegions event
 
         return this
 
