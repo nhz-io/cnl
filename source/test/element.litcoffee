@@ -17,19 +17,13 @@
           it 'should return an instance of Element', ->
             (new Element).should.be.an.instanceof Element
 
-Constructor should copy origin and regions passed as
-named arguments into the instance properties
+Constructor should copy the **origin** passed as named arguments into the instance
 
           it 'should copy the origin to the instance', ->
             element = new Element origin: (origin = x:10, y:20)
             element.origin.x.should.be.equal 10
             element.origin.y.should.be.equal 20
             element.origin.should.not.be.equal origin
-
-          it 'should copy the regions to the instance', ->
-            element = new Element regions: (regions = test: (region = []))
-            element.regions.test.should.be.equal region
-            element.regions.should.not.be.equal regions
 
 ---
 
@@ -42,21 +36,6 @@ named arguments into the instance properties
             element.localizeEventCoordinates event
             event.localX.should.be.equal 5
             event.localY.should.be.equal 10
-
-
-        describe '#getEventRegions', ->
-          it 'should return the regions matching the event', ->
-            element = new Element regions: test: [0,0,10,10]
-            regions = element.getEventRegions localX:5, localY:5
-            regions.should.have.property 'test'
-            regions.test[0].should.be.equal 0
-            regions.test[1].should.be.equal 0
-            regions.test[2].should.be.equal 10
-            regions.test[3].should.be.equal 10
-
-          it 'should return undefined if no regions match', ->
-            element = new Element regions: test: [0,0,10,10]
-            should(element.getEventRegions localX:20, localY:20).not.be.ok
 
 ---
 

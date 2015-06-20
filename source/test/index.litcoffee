@@ -10,12 +10,14 @@
   
     test = require './element'
     test (require '../element'), 'Element'
+    test (require '../shape'), 'Shape'
     test (require '../component'), 'Component'
 
 ## [Shape Test][ShapeTest]
     
     test = require './shape'
     test (require '../shape'), 'Shape'
+    test (require '../component'), 'Component'
 
 ## [Pen Test][PenTest]
   

@@ -22,11 +22,6 @@ Copy the element origin if it was set from named arguments
 
         if @origin then @origin = x:(@origin.x or 0), y:(@origin.y or 0)
 
-Copy the element regions if they were set from named arguments
-
-        if regions = @regions
-          @regions = {}
-          @regions[name] = region for name, region of regions
 
 Register validating listeners for each **type** from the list.
 
@@ -90,11 +85,6 @@ Add normal extendable listener
 * **y**
   * Type: [Number][Number] - y coordinate
 
-### #regions
-* Type: [Object][Object] - region name/value pairs
-* **{REGION NAME}**
-    * Type: [Array][Array] - [x, y, width, height]
-
 ---
 
 ## METHODS
@@ -117,35 +107,6 @@ If event already has localized **y**, use it instead of absolute **y**
           event.localY = y - (@origin?.y or 0)
 
         return this
----
-
-### #getEventRegions(event)
-* Returns: [Object][Object] - named set of matching regions
-
-Helper method, to get element regions that match the event.
-
-      getEventRegions: (event) ->
-        result = null
-
-Proceed only if event coordinates are localized
-
-        if event and (x = event.localX)? and (y = event.localY)?
-
-Walk through the element regions
-
-          for name, $ of @regions
-
-and add the region to the result if event localized coordinates are within
-the region rectangle.
-
-            if $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
-
-Initialize result only if at least one region matches
-
-              result or= {}
-              result[name] = $
-
-        return result
 
 ---
 
