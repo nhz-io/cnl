@@ -94,6 +94,9 @@ Add normal extendable listener
 Helper method, to localize event coordinates.
 
       localizeEventCoordinates: (event) ->
+
+Proceed only for valid event
+
         if event
 
 If event already has localized **x**, use it instead of absolute **x**
@@ -118,10 +121,14 @@ Extendable capturing **mousemove** listener
 
       mousemoveCaptureListener: (event) ->
 
+Proceed only for valid event
+
+        if event
+
 Store the event in the runtime for later and localize event coordinates
 
-        @___runtime.mousemoveEvent = event
-        @localizeEventCoordinates event
+          @___runtime.mousemoveEvent = event
+          @localizeEventCoordinates event
 
         return this
 
@@ -134,10 +141,14 @@ Extendable capturing **mousedown** listener
 
       mousedownCaptureListener: (event) ->
 
+Proceed only for valid event
+
+        if event
+
 Store the event in the runtime for later and localize event coordinates
 
-        @___runtime.mousedownEvent = event
-        @localizeEventCoordinates event
+          @___runtime.mousedownEvent = event
+          @localizeEventCoordinates event
 
         return this
 
@@ -150,10 +161,14 @@ Extendable capturing **mouseup** listener
 
       mouseupCaptureListener: (event) ->
 
+Proceed only for valid event
+
+        if event
+
 Store the event in the runtime for later and localize event coordinates
 
-        @___runtime.mouseupEvent = event
-        @localizeEventCoordinates event
+          @___runtime.mouseupEvent = event
+          @localizeEventCoordinates event
 
         return this
 
