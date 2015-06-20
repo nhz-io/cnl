@@ -69,6 +69,7 @@ Extendable capturing **mousemove** listener
 Store the event in the runtime for later
 
         @___runtime.mousemoveEvent = event
+        return this
 
 ---
 
@@ -82,6 +83,7 @@ Extendable capturing **mousedown** listener
 Store the event in the runtime for later
 
         @___runtime.mousedownEvent = event
+        return this
 
 ---
 
@@ -95,6 +97,7 @@ Extendable capturing **mouseup** listener
 Store the event in the runtime for later
         
         @___runtime.mouseupEvent = event
+        return this
 
 [Element]: ./element
 
