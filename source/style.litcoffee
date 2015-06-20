@@ -4,7 +4,7 @@
 
 ---
 
-    module.exports = class Style extends require 'ecl/dist/evented'
+    module.exports = class Style extends require 'ecl/dist/base'
 
 ## CONSTRUCTOR
 

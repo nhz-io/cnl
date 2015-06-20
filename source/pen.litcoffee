@@ -4,7 +4,7 @@
 
 ---
 
-    module.exports = class Pen extends require 'ecl/dist/evented'
+    module.exports = class Pen extends require 'ecl/dist/base'
 
 ## CONSTRUCTOR
 
