@@ -2,7 +2,8 @@
 * Extends: [Evented][Evented]
 * Parent: [Index][Parent]
 
-A visual element.
+A visual element. Manages **mousemove**, **mousedown** and **mouseup** events.
+Manages **regions** and **local event coordinates**.
 
 ---
 
@@ -125,7 +126,7 @@ Helper method, to get element regions that match the event.
 
       getEventRegions: (event) ->
         result = null
-        
+
 Proceed only if event coordinates are localized
 
         if event and (x = event.localX)? and (y = event.localY)?
