@@ -13,7 +13,7 @@
 ### EXPORTS  
 
     module.exports =
-      Engine    : require './base'
+      Engine    : require './engine'
       Element   : require './element'
       Shape     : require './shape'
       Style     : require './style'
