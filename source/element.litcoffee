@@ -101,7 +101,7 @@ the region rectangle.
 
             if $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
               result[name] = $
-              
+
         return result
 
 ---
@@ -114,9 +114,11 @@ Extendable capturing **mousemove** listener
     
       mousemoveCaptureListener: (event) ->
 
-Store the event in the runtime for later
+Store the event in the runtime for later and localize event coordinates
 
         @___runtime.mousemoveEvent = event
+        @localizeEventCoordinates event
+
         return this
 
 ---
@@ -128,9 +130,11 @@ Extendable capturing **mousedown** listener
 
       mousedownCaptureListener: (event) ->
 
-Store the event in the runtime for later
+Store the event in the runtime for later and localize event coordinates
 
         @___runtime.mousedownEvent = event
+        @localizeEventCoordinates event
+
         return this
 
 ---
@@ -142,9 +146,11 @@ Extendable capturing **mouseup** listener
       
       mouseupCaptureListener: (event) ->
 
-Store the event in the runtime for later
+Store the event in the runtime for later and localize event coordinates
         
         @___runtime.mouseupEvent = event
+        @localizeEventCoordinates event
+        
         return this
 
 ---
