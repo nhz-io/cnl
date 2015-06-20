@@ -177,7 +177,9 @@ Reset the state if no region was found.
 **event**
 * Type: [Event][Event] - captured event
 
+[Parent]: ./index.litcoffee
 [Shape]: ./shape.litcoffee
 [Element]: ./element.litcoffee
 [Event]: ./event.litcoffee
 [Object]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+[Array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array

@@ -248,6 +248,6 @@ Save the event and localize event coordinates.
 
 
 [Parent]: ./index.litcoffee
-[Element]: ./element.litcoffee
+[Shape]: ./shape.litcoffee
 [Component]: ./component.litcoffee
 

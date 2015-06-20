@@ -27,5 +27,5 @@ Creates Style instance.
 
 [Parent]: ./index.litcoffee
 
-[Evented]: https://nhzio.github.io/ecl/evented.html
+[Base]: https://nhzio.github.io/ecl/base.html
 
