@@ -1,11 +1,6 @@
 # cnl tests
 * Parent: [Index][Parent]
 
-## [Engine Test][EngineTest]
-
-    test = require './engine'
-    test (require '../engine'), 'Engine'
-
 ## [Element Test][ElementTest]
   
     test = require './element'

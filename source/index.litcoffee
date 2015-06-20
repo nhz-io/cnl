@@ -1,7 +1,6 @@
 # cnl    
 
 ## CLASSES
-* [Engine][Engine] - rendering engine
 * [Element][Element] - visual element
 * [Shape][Shape] - drawable shape
 * [Component][Component] - interactive component
@@ -13,14 +12,12 @@
 ### EXPORTS  
 
     module.exports =
-      Engine    : require './engine'
       Element   : require './element'
       Shape     : require './shape'
       Style     : require './style'
       Pen       : require './pen'
       Component : require './component'
 
-[Engine]: ./engine.litcoffee
 [Element]: ./element.litcoffee
 [Component]: ./component.litcoffee
 [Shape]: ./shape.litcoffee
