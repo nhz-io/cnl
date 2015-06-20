@@ -59,6 +59,54 @@ Add normal extendable listener
 ---
 
 ## METHODS
+### #localizeEventCoordinates(event) ->
+* Returns: [Element][Element]
+
+Helper method, to localize event coordinates.
+    
+      localizeEventCoordinates: (event) ->
+        if event
+
+If event already has localized **x**, use it instead of absolute **x**
+
+          x = (if event.localX? then event.localX else event.x)                  
+          event.localX = x - (@origin?.x or 0)
+
+If event already has localized **y**, use it instead of absolute **y**
+          
+          y = (if event.localY? then event.localY else event.y)
+          event.localY = y - (origin?.y or 0)
+
+        return this
+---
+
+### #getEventRegions(event)
+* Returns: [Object][Object] - named set of matching regions
+
+Helper method, to get element regions that match the event.
+      
+      getEventRegions: (event) ->
+
+Proceed only if event coordinates are localized
+
+        if event and (x = event.localX)? and (y = event.localY)?          
+          result = {}
+
+Walk through the element regions
+
+          for name, $ of @regions
+
+and add the region to the result if event localized coordinates are within
+the region rectangle.
+
+            if $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
+              result[name] = $
+              
+        return result
+
+---
+
+## LISTENERS
 ### #mousemoveCaptureListener(event)
 * Returns: [Element][Element]
 
