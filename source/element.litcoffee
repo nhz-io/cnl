@@ -124,11 +124,11 @@ If event already has localized **y**, use it instead of absolute **y**
 Helper method, to get element regions that match the event.
 
       getEventRegions: (event) ->
-
+        result = null
+        
 Proceed only if event coordinates are localized
 
         if event and (x = event.localX)? and (y = event.localY)?
-          result = {}
 
 Walk through the element regions
 
@@ -138,6 +138,10 @@ and add the region to the result if event localized coordinates are within
 the region rectangle.
 
             if $[0] <= x <= ($[0] + $[2]) and $[1] <= y <= ($[1] + $[3])
+
+Initialize result only if at least one region matches
+
+              result or= {}
               result[name] = $
 
         return result
