@@ -100,7 +100,7 @@ $.gulp.task 'docco', ['clean', 'lint'], ->
     .pipe $.docco()
     .pipe $.gulp.dest _.doc
 
-$.gulp.task 'dist', [ 'build', 'test', 'browserify', 'uglify', 'pack', 'docco' ], ->
+$.gulp.task 'dist', [ 'build', 'test', 'browserify', 'uglify', 'pack' ], ->
   $.gulp
     .src [ "#{_.build}/**", "!#{_.build}/#{_.browserify}.js", "!#{_.build}/test{,/**}" ]
     .pipe $.gulp.dest _.dist
