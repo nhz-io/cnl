@@ -113,7 +113,7 @@ If event already has localized **x**, use it instead of absolute **x**
 If event already has localized **y**, use it instead of absolute **y**
 
           y = (if event.localY? then event.localY else event.y)
-          event.localY = y - (origin?.y or 0)
+          event.localY = y - (@origin?.y or 0)
 
         return this
 ---
