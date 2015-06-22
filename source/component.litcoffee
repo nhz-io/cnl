@@ -59,7 +59,7 @@ Add normal extendable listener
 
 ---
 
-## METHODS
+## LISTENERS
 ### #mousemoveCaptureListener(event)
 * Returns: [Component][Component]
 
