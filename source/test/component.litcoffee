@@ -83,6 +83,18 @@ Drag capturing listener
             .mousemoveCaptureListener()
             .should.be.equal component
 
+        it 'should save the event in #___runtime', ->
+          (component = new Component)
+            .dragCaptureListener 'test'
+            .___runtime.dragEvent.should.be.equal 'test'
+
+        it 'should localize the event coordinates', ->
+          (component = new Component origin: x:10, y:15)
+            .dragCaptureListener (event = x:20, y:30)
+
+          event.localX.should.be.equal 10
+          event.localY.should.be.equal 15
+
 Grab capturing listener
 
       describe '#grabCaptureListener', ->
@@ -105,7 +117,12 @@ Mousedown listener
         it 'should return the component', ->
           (component = new Component)
             .mousedownListener()
-            .should.be.equal component       
+            .should.be.equal component
+
+        it 'should set grab flag in #___runtime', ->
+          (component = new Component state:'active', events:grab:true)
+            .mousedownListener {}
+            .___runtime.grab.should.be.true
 
 Drag listener
       
