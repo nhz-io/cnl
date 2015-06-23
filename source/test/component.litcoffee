@@ -4,6 +4,7 @@
 ---
 
     should = require 'should'
+    Event = require 'ecl/dist/event'
     module.exports = (Component, name='Component') ->
 
 ## CONSTRUCTOR
@@ -74,6 +75,120 @@ Mousemove capturing listener
             regions : normal: [0,0,1,1], hover: [0,0,1,1]
           component.mousemoveCaptureListener x:0.5, y:0.5
           component.state.should.be.equal 'hover'
+
+Mousedown capturing listener
+        
+      describe '#mousedownCaptureListener', ->
+        it 'should return the component', ->
+          (component = new Component)
+            .mousedownCaptureListener()
+            .should.be.equal component
+
+        it 'should set the active state', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : active: [0,0,1,1]
+          
+          component
+            .mousedownCaptureListener x:0.5, y:0.5
+            .state.should.be.equal 'active'
+
+        it 'should set the hover state', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : hover: [0,0,1,1]
+          
+          component
+            .mousedownCaptureListener x:0.5, y:0.5
+            .state.should.be.equal 'hover'
+
+        it 'should set the normal state', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : normal: [0,0,1,1]
+          
+          component
+            .mousedownCaptureListener x:0.5, y:0.5
+            .state.should.be.equal 'normal'
+
+        it 'should result in calling mousedownListener', (done) ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : active: [0,0,1,1]
+            events  : mousedown:true
+
+          component.addListener 'mousedown', -> done()
+          component.broadcastEvent new Event
+            type:'mousedown', x:0.5, y:0.5
+
+Mouseup capturing listener
+      
+      describe '#mouseupCaptureListener', ->
+        it 'should return the component', ->
+          (component = new Component)
+            .mouseupCaptureListener()
+            .should.be.equal component
+
+        it 'should set the active state', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : active: [0,0,1,1]
+          
+          component
+            .mouseupCaptureListener x:0.5, y:0.5
+            .state.should.be.equal 'active'
+
+        it 'should set event target to this component', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : active: [0,0,1,1]
+          
+          component.mouseupCaptureListener (event = x:0.5, y:0.5)
+          event.target.should.be.equal component
+
+        it 'should set the hover state', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : hover: [0,0,1,1]
+          
+          component
+            .mouseupCaptureListener x:0.5, y:0.5
+            .state.should.be.equal 'hover'
+
+        it 'should set event target to this component', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : hover: [0,0,1,1]
+          
+          component.mouseupCaptureListener (event = x:0.5, y:0.5)
+          event.target.should.be.equal component
+
+        it 'should set the normal state', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : normal: [0,0,1,1]
+          
+          component
+            .mouseupCaptureListener x:0.5, y:0.5
+            .state.should.be.equal 'normal'
+
+        it 'should set event target to this component', ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : normal: [0,0,1,1]
+          
+          component.mouseupCaptureListener (event = x:0.5, y:0.5)
+          event.target.should.be.equal component
+
+        it 'should broadcast release event to itself', (done) ->
+          component = new Component
+            origin  : x:0, y:0
+            regions : active: [0,0,1,1]
+            events  : release:true
+
+          component.broadcastEvent = -> done()
+          component.___runtime.grab = true
+          component.mouseupCaptureListener x:0.5, y:0.5
 
 Drag capturing listener
 

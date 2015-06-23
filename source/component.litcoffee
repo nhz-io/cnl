@@ -122,6 +122,7 @@ Proceed only for valid events that have any matching regions
 
         if event and regions = event.regions
 
+
 Set the state to the first matching region name in order
 
           for name in ['active', 'hover', 'normal'] when regions[name]
@@ -132,7 +133,7 @@ If any state was set, assign it to the component and set the component
 as the event target.
 
           if (@state = state or null) then event.target = this
-
+          
         return this
 
 #### PARAMETERS
