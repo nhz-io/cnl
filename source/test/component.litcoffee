@@ -148,6 +148,11 @@ Mousedown listener
             .mousedownListener {}
             .___runtime.grab.should.be.true
 
+        it 'should deliver the grab event to itself', (done) ->
+          (component = new Component state:'active', events:grab:true)
+            .broadcastEvent = -> done()
+          component.mousedownListener {}
+
 Drag listener
       
       describe '#dragListener', ->
