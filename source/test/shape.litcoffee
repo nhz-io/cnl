@@ -42,6 +42,10 @@ Constructor should copy regions passed as named arguments into the instance
             shape = new Shape regions: test: [0,0,10,10]
             should(shape.getEventRegions localX:20, localY:20).not.be.ok
 
+        describe '#draw', ->
+          it 'should return the shape', ->
+            (shape = new Shape).draw().should.be.equal shape
+
 ---
 
 ## LISTENERS
