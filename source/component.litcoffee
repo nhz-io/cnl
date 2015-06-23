@@ -155,7 +155,7 @@ Proceed only for valid event
 Save the event and localize event coordinates.
 
           @___runtime.dragEvent = event
-          localizeEventCoordinates event, @origin
+          @localizeEventCoordinates event, @origin
 
         return this
 
@@ -179,7 +179,7 @@ Proceed only for valid event
 Save the event and localize event coordinates.
 
           @___runtime.grabEvent = event
-          localizeEventCoordinates event, @origin
+          @localizeEventCoordinates event, @origin
 
         return this
 
@@ -202,7 +202,7 @@ Proceed only for valid event
 Save the event and localize event coordinates.
 
           @___runtime.releaseEvent = event
-          localizeEventCoordinates event, @origin
+          @localizeEventCoordinates event, @origin
           
         return this
 
