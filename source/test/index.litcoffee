@@ -24,6 +24,11 @@
     test = require './style'
     test (require '../style'), 'Style'
 
+## [Component Test][ComponentTest]
+    
+    test = require './component'
+    test (require '../component'), 'Component'
+
 [Parent]: ../index.litcoffee
 
 [Engine]: ../engine.litcoffee

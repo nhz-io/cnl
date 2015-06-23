@@ -2,7 +2,11 @@
 * Extends: [Shape][Shape]
 * Parent: [Index][Parent]
 
-An interactive component
+An interactive component. A component exists in 3 states:
+**active**, **hover** and **normal**. There is an additional state,
+but it can't really be considered a state, it is just `null`.
+The states change depending on mouse actions and underlying shape
+regions.
 
 ---
 
@@ -246,8 +250,6 @@ Save the event and localize event coordinates.
 **event**
 * Type: [Event][Event]
 
-
 [Parent]: ./index.litcoffee
 [Shape]: ./shape.litcoffee
 [Component]: ./component.litcoffee
-
