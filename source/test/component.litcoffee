@@ -89,11 +89,11 @@ Drag capturing listener
             .___runtime.dragEvent.should.be.equal 'test'
 
         it 'should localize the event coordinates', ->
-          (component = new Component origin: x:10, y:15)
+          (component = new Component origin: x:10, y:25)
             .dragCaptureListener (event = x:20, y:30)
 
           event.localX.should.be.equal 10
-          event.localY.should.be.equal 15
+          event.localY.should.be.equal 5
 
 Grab capturing listener
 
@@ -103,6 +103,18 @@ Grab capturing listener
             .grabCaptureListener()
             .should.be.equal component
 
+        it 'should save the event in #___runtime', ->
+          (component = new Component)
+            .grabCaptureListener 'test'
+            .___runtime.grabEvent.should.be.equal 'test'
+
+        it 'should localize the event coordinates', ->
+          (component = new Component origin: x:10, y:25)
+            .grabCaptureListener (event = x:20, y:30)
+
+          event.localX.should.be.equal 10
+          event.localY.should.be.equal 5
+
 Release capturing listener
 
       describe '#releaseCaptureListener', ->
@@ -110,6 +122,18 @@ Release capturing listener
           (component = new Component)
             .releaseCaptureListener()
             .should.be.equal component
+
+        it 'should save the event in #___runtime', ->
+          (component = new Component)
+            .releaseCaptureListener 'test'
+            .___runtime.releaseEvent.should.be.equal 'test'
+
+        it 'should localize the event coordinates', ->
+          (component = new Component origin: x:10, y:25)
+            .releaseCaptureListener (event = x:20, y:30)
+
+          event.localX.should.be.equal 10
+          event.localY.should.be.equal 5
 
 Mousedown listener
 
