@@ -72,7 +72,7 @@ Capture **mousemove** event passing throught this component
       mousemoveCaptureListener: (event) ->
         super
 
-Proceed only for valid event
+Proceed only for valid events that have
 
         if event
           $ = @___runtime
@@ -107,6 +107,83 @@ Otherwise, set the state to the name of the first matching region in order.
 #### PARAMETERS
 **event**
 * Type: [Event][Event]
+
+---
+
+### #mousedownCaptureListener(event)
+* Returns: [Component][Component]
+
+Capture **mousedown** events passing through this shape
+
+      mousedownCaptureListener: (event) ->
+        super
+
+Proceed only for valid events that have any matching regions
+
+        if event and regions = event.regions
+
+Set the state to the first matching region name in order
+
+          for name in ['active', 'hover', 'normal'] when regions[name]
+            state = name
+            break
+
+If any state was set, assign it to the component and set the component
+as the event target.
+
+          if (@state = state or null) then event.target = this
+
+        return this
+
+#### PARAMETERS
+**event**
+* Type: [Event][Event] - captured event
+
+---
+
+### #mouseupCaptureListener(event)
+* Returns: [Event][Event]
+
+Capture **mouseup** events passing through this component
+
+      mouseupCaptureListener: (event) ->
+        super
+
+Proceed only for valid events
+        
+        if event
+          $ = @___runtime
+
+Set the state to the first matching region name in order (if any)
+
+          if regions = event.regions
+
+            for name in ['active', 'hover', 'normal'] when regions[name]
+              state = name
+              break
+
+If any state was set then assign it to the component and set the component
+as the event target.
+
+          if (@state = state or null) then event.target = this
+
+If grab event preceeded then clear it.
+
+          if $.grab
+            $.grab = false
+
+Create and broadcast the **release** event to this component 
+if **release** event is enabled.
+
+            if @events?.release
+              @broadcastEvent $.releaseEvent = new Event
+                type:'release', x:event.x, y:event.y
+
+        return this
+
+#### PARAMETERS
+**event**
+* Type: [Event][Event] - captured event
 
 ---
 
