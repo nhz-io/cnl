@@ -14,16 +14,6 @@
     test (require '../shape'), 'Shape'
     test (require '../component'), 'Component'
 
-## [Pen Test][PenTest]
-  
-    test = require './pen'
-    test (require '../pen'), 'Pen'
-
-## [Style Test][StyleTest]
-    
-    test = require './style'
-    test (require '../style'), 'Style'
-
 ## [Component Test][ComponentTest]
     
     test = require './component'
