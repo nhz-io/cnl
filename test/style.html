@@ -2,10 +2,10 @@
 
 <html>
 <head>
-  <title>cnl</title>
+  <title>TEST CLASS: Style</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
-  <link rel="stylesheet" media="all" href="docco.css" />
+  <link rel="stylesheet" media="all" href="../docco.css" />
 </head>
 <body>
   <div id="container">
@@ -21,12 +21,9 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1 id="cnl">cnl</h1>
-<h2 id="classes">CLASSES</h2>
+              <h1 id="test-class-style">TEST CLASS: Style</h1>
 <ul>
-<li><a href="./element.html">Element</a> - visual element</li>
-<li><a href="./shape.html">Shape</a> - drawable shape</li>
-<li><a href="./component.html">Component</a> - interactive component</li>
+<li>Parent: <a href="./index.html">Index</a></li>
 </ul>
 <hr>
 
@@ -41,14 +38,18 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h3 id="exports">EXPORTS</h3>
-
+              
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports =
-  Element   : <span class="hljs-built_in">require</span> <span class="hljs-string">'./element'</span>
-  Shape     : <span class="hljs-built_in">require</span> <span class="hljs-string">'./shape'</span>
-  Component : <span class="hljs-built_in">require</span> <span class="hljs-string">'./component'</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>should = <span class="hljs-built_in">require</span> <span class="hljs-string">'should'</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">(Style, name=<span class="hljs-string">'Style'</span>)</span> -&gt;</span>
+
+  describe name, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should be a class'</span>, <span class="hljs-function">-&gt;</span> Style.should.be.a.class
+
+    describe <span class="hljs-string">'#constructor(args)'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return an instance of Style'</span>, <span class="hljs-function">-&gt;</span>
+        (<span class="hljs-keyword">new</span> Style).should.be.an.<span class="hljs-keyword">instanceof</span> Style</pre></div></div>
             
         </li>
         

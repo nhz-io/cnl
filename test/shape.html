@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>TEST CLASS: Shape</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="test-class-shape">TEST CLASS: Shape</h1>
+<ul>
+<li>Parent: <a href="./index.html">Index</a></li>
+</ul>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>should = <span class="hljs-built_in">require</span> <span class="hljs-string">'should'</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">(Shape, name=<span class="hljs-string">'Shape'</span>)</span> -&gt;</span>
+
+  describe name, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should be a class'</span>, <span class="hljs-function">-&gt;</span> Shape.should.be.a.class</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2 id="constructor">CONSTRUCTOR</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    describe <span class="hljs-string">'#constructor(args)'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return an instance of Shape'</span>, <span class="hljs-function">-&gt;</span>
+        (<span class="hljs-keyword">new</span> Shape).should.be.an.<span class="hljs-keyword">instanceof</span> Shape</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Constructor should copy regions passed as named arguments into the instance</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      it <span class="hljs-string">'should copy the regions to the instance'</span>, <span class="hljs-function">-&gt;</span>
+        shape = <span class="hljs-keyword">new</span> Shape <span class="hljs-attribute">regions</span>: (regions = <span class="hljs-attribute">test</span>: (region = []))
+        shape.regions.test.should.be.equal region
+        shape.regions.should.<span class="hljs-keyword">not</span>.be.equal regions</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h2 id="methods">METHODS</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    describe <span class="hljs-string">'#getEventRegions'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return the regions matching the event'</span>, <span class="hljs-function">-&gt;</span>
+        shape = <span class="hljs-keyword">new</span> Shape <span class="hljs-attribute">regions</span>: <span class="hljs-attribute">test</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>]
+        regions = shape.getEventRegions <span class="hljs-attribute">localX</span>:<span class="hljs-number">5</span>, <span class="hljs-attribute">localY</span>:<span class="hljs-number">5</span>
+        regions.should.have.property <span class="hljs-string">'test'</span>
+        regions.test[<span class="hljs-number">0</span>].should.be.equal <span class="hljs-number">0</span>
+        regions.test[<span class="hljs-number">1</span>].should.be.equal <span class="hljs-number">0</span>
+        regions.test[<span class="hljs-number">2</span>].should.be.equal <span class="hljs-number">10</span>
+        regions.test[<span class="hljs-number">3</span>].should.be.equal <span class="hljs-number">10</span>
+
+      it <span class="hljs-string">'should return undefined if no regions match'</span>, <span class="hljs-function">-&gt;</span>
+        shape = <span class="hljs-keyword">new</span> Shape <span class="hljs-attribute">regions</span>: <span class="hljs-attribute">test</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>]
+        should(shape.getEventRegions <span class="hljs-attribute">localX</span>:<span class="hljs-number">20</span>, <span class="hljs-attribute">localY</span>:<span class="hljs-number">20</span>).<span class="hljs-keyword">not</span>.be.ok
+
+    describe <span class="hljs-string">'#draw'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return the shape'</span>, <span class="hljs-function">-&gt;</span>
+        (shape = <span class="hljs-keyword">new</span> Shape).draw().should.be.equal shape</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2 id="listeners">LISTENERS</h2>
+<p>Mousemove capturing listener should store the event in the runtime
+and localize the event coordinates.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    describe <span class="hljs-string">'#mousemoveCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return the shape'</span>, <span class="hljs-function">-&gt;</span>
+        (shape = <span class="hljs-keyword">new</span> Shape)
+          .mousemoveCaptureListener()
+          .should.be.equal shape</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Mousedown capturing listener should store the event in the runtime
+and localize the event coordinates.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    describe <span class="hljs-string">'#mousedownCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return the shape'</span>, <span class="hljs-function">-&gt;</span>
+        (shape = <span class="hljs-keyword">new</span> Shape)
+          .mousedownCaptureListener()
+          .should.be.equal shape</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Mouseup capturing listener should store the event in the runtime
+and localize the event coordinates.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    describe <span class="hljs-string">'#mouseupCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return the shape'</span>, <span class="hljs-function">-&gt;</span>
+        (shape = <span class="hljs-keyword">new</span> Shape)
+          .mouseupCaptureListener()
+          .should.be.equal shape</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

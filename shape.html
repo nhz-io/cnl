@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>CLASS: Shape</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="class-shape">CLASS: Shape</h1>
+<ul>
+<li>Extends: <a href="./element.html">Element</a></li>
+<li>Parent: <a href="./index.html">Index</a></li>
+</ul>
+<p>A drawable shape. Manages <strong>regions</strong>.</p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shape</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">require</span> './<span class="hljs-title">element</span>'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="constructor">CONSTRUCTOR</h2>
+<h3 id="new-shape-args-">new Shape(args)</h3>
+<p>Creates Shape instance.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">constructor</span>: <span class="hljs-function">-&gt;</span>
+    <span class="hljs-keyword">super</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Copy the element regions if they were set from named arguments</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> regions = <span class="hljs-property">@regions</span>
+      <span class="hljs-property">@regions</span> = {}
+      <span class="hljs-property">@regions</span>[name] = region <span class="hljs-keyword">for</span> name, region <span class="hljs-keyword">of</span> regions</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<ul>
+<li><strong>args</strong> - named arguments</li>
+</ul>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2 id="properties">PROPERTIES</h2>
+<h3 id="-regions">#regions</h3>
+<ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - region name/value pairs</li>
+<li><strong>{REGION NAME}</strong><ul>
+<li>Type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a> - [x, y, width, height]</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h2 id="methods">METHODS</h2>
+<h3 id="-draw-context-args-">#draw(context, args)</h3>
+<ul>
+<li>Returns: <a href="./shape.html">Shape</a></li>
+</ul>
+<p>A draw method stub</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">draw</span>: <span class="hljs-function">-&gt;</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3 id="-geteventregions-event-">#getEventRegions(event)</h3>
+<ul>
+<li>Returns: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a> - named set of matching regions</li>
+</ul>
+<p>Helper method, to get element regions that match the event.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">getEventRegions</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    result = <span class="hljs-literal">null</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Proceed only if event coordinates are localized</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> event <span class="hljs-keyword">and</span> (x = event.localX)? <span class="hljs-keyword">and</span> (y = event.localY)?</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Walk through the element regions</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">for</span> name, $ <span class="hljs-keyword">of</span> <span class="hljs-property">@regions</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>and add the region to the result if event localized coordinates are within
+the region rectangle.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">if</span> $[<span class="hljs-number">0</span>] &lt;= x &lt;= ($[<span class="hljs-number">0</span>] + $[<span class="hljs-number">2</span>]) <span class="hljs-keyword">and</span> $[<span class="hljs-number">1</span>] &lt;= y &lt;= ($[<span class="hljs-number">1</span>] + $[<span class="hljs-number">3</span>])</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Initialize result only if at least one region matches</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          result <span class="hljs-keyword">or</span>= {}
+          result[name] = $
+
+    <span class="hljs-keyword">return</span> result</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <h2 id="listeners">LISTENERS</h2>
+<h3 id="-mousemovecapturelistener-event-">#mousemoveCaptureListener(event)</h3>
+<ul>
+<li>Returns: <a href="./shape.html">Shape</a></li>
+</ul>
+<p>Capture <strong>mousemove</strong> events passing through this shape</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousemoveCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Proceed only for valid event</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> event</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Check if there are any regions that match the event,
+store them in the event and set this shape as event target</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      event.target = <span class="hljs-keyword">this</span> <span class="hljs-keyword">if</span> event.regions = <span class="hljs-property">@getEventRegions</span> event
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong></p>
+<ul>
+<li>Type: <a href="./event.html">Event</a> - captured event</li>
+</ul>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h3 id="-mousedowncapturelistener-event-">#mousedownCaptureListener(event)</h3>
+<ul>
+<li>Returns: <a href="./shape.html">Shape</a></li>
+</ul>
+<p>Capture <strong>mousedown</strong> events passing through this shape</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mousedownCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Proceed only for valid event</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> event</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Check if there are any regions that match the event,
+store them in the event and set this shape as event target</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      event.target = <span class="hljs-keyword">this</span> <span class="hljs-keyword">if</span> event.regions = <span class="hljs-property">@getEventRegions</span> event
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong></p>
+<ul>
+<li>Type: <a href="./event.html">Event</a> - captured event</li>
+</ul>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <h3 id="-mouseupcapturelistener-event-">#mouseupCaptureListener(event)</h3>
+<ul>
+<li>Returns: <a href="./event.html">Event</a></li>
+</ul>
+<p>Capture <strong>mouseup</strong> events passing through this shape</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-attribute">mouseupCaptureListener</span>: <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+    <span class="hljs-keyword">super</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Proceed only for valid event</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> event</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Check if there are any regions that match the event,
+store them in the event and set this shape as event target</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      event.target = <span class="hljs-keyword">this</span> <span class="hljs-keyword">if</span> event.regions = <span class="hljs-property">@getEventRegions</span> event
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h4 id="parameters">PARAMETERS</h4>
+<p><strong>event</strong></p>
+<ul>
+<li>Type: <a href="./event.html">Event</a> - captured event</li>
+</ul>
+
+            </div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

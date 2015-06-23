@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>TEST CLASS: Component</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1 id="test-class-component">TEST CLASS: Component</h1>
+<ul>
+<li>Parent: <a href="./index.html">Index</a></li>
+</ul>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>should = <span class="hljs-built_in">require</span> <span class="hljs-string">'should'</span>
+Event = <span class="hljs-built_in">require</span> <span class="hljs-string">'ecl/dist/event'</span>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">(Component, name=<span class="hljs-string">'Component'</span>)</span> -&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="constructor">CONSTRUCTOR</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe name, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should be a class'</span>, <span class="hljs-function">-&gt;</span> Component.should.be.a.class
+
+    describe <span class="hljs-string">'#constructor(args)'</span>, <span class="hljs-function">-&gt;</span>
+      it <span class="hljs-string">'should return an instance of Component'</span>, <span class="hljs-function">-&gt;</span>
+        (<span class="hljs-keyword">new</span> Component).should.be.an.<span class="hljs-keyword">instanceof</span> Component</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2 id="listeners">LISTENERS</h2>
+<p>Mousemove capturing listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#mousemoveCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .mousemoveCaptureListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should set the state to active if component is grabbed'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+      component.___runtime.grab = <span class="hljs-literal">true</span>
+      component.state = <span class="hljs-literal">null</span>
+      component.mousemoveCaptureListener({})
+      component.state.should.be.equal <span class="hljs-string">'active'</span>
+
+    it <span class="hljs-string">'should broadcast drag event with drag offset'</span>, <span class="hljs-function"><span class="hljs-params">(done)</span> -&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">events</span>:<span class="hljs-attribute">drag</span>:<span class="hljs-literal">true</span>
+      component.___runtime.grab = <span class="hljs-literal">true</span>
+      component.___runtime.grabEvent = <span class="hljs-attribute">x</span>:<span class="hljs-number">10</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">10</span>
+      component.broadcastEvent = <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+        event.offsetX.should.be.equal <span class="hljs-number">10</span>
+        event.offsetY.should.be.equal <span class="hljs-number">5</span>
+        done()
+      component.mousemoveCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">20</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">15</span>
+
+    it <span class="hljs-string">'should broadcast drag event with drag offset using previous drag'</span>, <span class="hljs-function"><span class="hljs-params">(done)</span> -&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">events</span>:<span class="hljs-attribute">drag</span>:<span class="hljs-literal">true</span>
+      component.___runtime.grab = <span class="hljs-literal">true</span>
+      component.___runtime.dragEvent = <span class="hljs-attribute">x</span>:<span class="hljs-number">10</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">10</span>
+      component.broadcastEvent = <span class="hljs-function"><span class="hljs-params">(event)</span> -&gt;</span>
+        event.offsetX.should.be.equal <span class="hljs-number">10</span>
+        event.offsetY.should.be.equal <span class="hljs-number">5</span>
+        done()
+      component.mousemoveCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">20</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">15</span>
+
+    it <span class="hljs-string">'should set the component state to hover'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">hover</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      component.mousemoveCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+      component.state.should.be.equal <span class="hljs-string">'hover'</span>
+
+    it <span class="hljs-string">'should set the component state to hover'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">normal</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      component.mousemoveCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+      component.state.should.be.equal <span class="hljs-string">'normal'</span>
+
+    it <span class="hljs-string">'should set the component state to hover preceeding normal'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">normal</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>], <span class="hljs-attribute">hover</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      component.mousemoveCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+      component.state.should.be.equal <span class="hljs-string">'hover'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Mousedown capturing listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#mousedownCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .mousedownCaptureListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should set the active state'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">active</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component
+        .mousedownCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+        .state.should.be.equal <span class="hljs-string">'active'</span>
+
+    it <span class="hljs-string">'should set the hover state'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">hover</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component
+        .mousedownCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+        .state.should.be.equal <span class="hljs-string">'hover'</span>
+
+    it <span class="hljs-string">'should set the normal state'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">normal</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component
+        .mousedownCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+        .state.should.be.equal <span class="hljs-string">'normal'</span>
+
+    it <span class="hljs-string">'should result in calling mousedownListener'</span>, <span class="hljs-function"><span class="hljs-params">(done)</span> -&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">active</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+        events  : <span class="hljs-attribute">mousedown</span>:<span class="hljs-literal">true</span>
+
+      component.addListener <span class="hljs-string">'mousedown'</span>, <span class="hljs-function">-&gt;</span> done()
+      component.broadcastEvent <span class="hljs-keyword">new</span> Event
+        <span class="hljs-attribute">type</span>:<span class="hljs-string">'mousedown'</span>, <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Mouseup capturing listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#mouseupCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .mouseupCaptureListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should set the active state'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">active</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component
+        .mouseupCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+        .state.should.be.equal <span class="hljs-string">'active'</span>
+
+    it <span class="hljs-string">'should set event target to this component'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">active</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component.mouseupCaptureListener (event = <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>)
+      event.target.should.be.equal component
+
+    it <span class="hljs-string">'should set the hover state'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">hover</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component
+        .mouseupCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+        .state.should.be.equal <span class="hljs-string">'hover'</span>
+
+    it <span class="hljs-string">'should set event target to this component'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">hover</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component.mouseupCaptureListener (event = <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>)
+      event.target.should.be.equal component
+
+    it <span class="hljs-string">'should set the normal state'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">normal</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component
+        .mouseupCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>
+        .state.should.be.equal <span class="hljs-string">'normal'</span>
+
+    it <span class="hljs-string">'should set event target to this component'</span>, <span class="hljs-function">-&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">normal</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+      
+      component.mouseupCaptureListener (event = <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span>)
+      event.target.should.be.equal component
+
+    it <span class="hljs-string">'should broadcast release event to itself'</span>, <span class="hljs-function"><span class="hljs-params">(done)</span> -&gt;</span>
+      component = <span class="hljs-keyword">new</span> Component
+        origin  : <span class="hljs-attribute">x</span>:<span class="hljs-number">0</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0</span>
+        regions : <span class="hljs-attribute">active</span>: [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]
+        events  : <span class="hljs-attribute">release</span>:<span class="hljs-literal">true</span>
+
+      component.broadcastEvent = <span class="hljs-function">-&gt;</span> done()
+      component.___runtime.grab = <span class="hljs-literal">true</span>
+      component.mouseupCaptureListener <span class="hljs-attribute">x</span>:<span class="hljs-number">0.5</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">0.5</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Drag capturing listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#dragCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .mousemoveCaptureListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should save the event in #___runtime'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .dragCaptureListener <span class="hljs-string">'test'</span>
+        .___runtime.dragEvent.should.be.equal <span class="hljs-string">'test'</span>
+
+    it <span class="hljs-string">'should localize the event coordinates'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">origin</span>: <span class="hljs-attribute">x</span>:<span class="hljs-number">10</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">25</span>)
+        .dragCaptureListener (event = <span class="hljs-attribute">x</span>:<span class="hljs-number">20</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">30</span>)
+
+      event.localX.should.be.equal <span class="hljs-number">10</span>
+      event.localY.should.be.equal <span class="hljs-number">5</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Grab capturing listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#grabCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .grabCaptureListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should save the event in #___runtime'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .grabCaptureListener <span class="hljs-string">'test'</span>
+        .___runtime.grabEvent.should.be.equal <span class="hljs-string">'test'</span>
+
+    it <span class="hljs-string">'should localize the event coordinates'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">origin</span>: <span class="hljs-attribute">x</span>:<span class="hljs-number">10</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">25</span>)
+        .grabCaptureListener (event = <span class="hljs-attribute">x</span>:<span class="hljs-number">20</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">30</span>)
+
+      event.localX.should.be.equal <span class="hljs-number">10</span>
+      event.localY.should.be.equal <span class="hljs-number">5</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Release capturing listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#releaseCaptureListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .releaseCaptureListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should save the event in #___runtime'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .releaseCaptureListener <span class="hljs-string">'test'</span>
+        .___runtime.releaseEvent.should.be.equal <span class="hljs-string">'test'</span>
+
+    it <span class="hljs-string">'should localize the event coordinates'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">origin</span>: <span class="hljs-attribute">x</span>:<span class="hljs-number">10</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">25</span>)
+        .releaseCaptureListener (event = <span class="hljs-attribute">x</span>:<span class="hljs-number">20</span>, <span class="hljs-attribute">y</span>:<span class="hljs-number">30</span>)
+
+      event.localX.should.be.equal <span class="hljs-number">10</span>
+      event.localY.should.be.equal <span class="hljs-number">5</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Mousedown listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#mousedownListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .mousedownListener()
+        .should.be.equal component
+
+    it <span class="hljs-string">'should set grab flag in #___runtime'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">state</span>:<span class="hljs-string">'active'</span>, <span class="hljs-attribute">events</span>:<span class="hljs-attribute">grab</span>:<span class="hljs-literal">true</span>)
+        .mousedownListener {}
+        .___runtime.grab.should.be.<span class="hljs-literal">true</span>
+
+    it <span class="hljs-string">'should deliver the grab event to itself'</span>, <span class="hljs-function"><span class="hljs-params">(done)</span> -&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component <span class="hljs-attribute">state</span>:<span class="hljs-string">'active'</span>, <span class="hljs-attribute">events</span>:<span class="hljs-attribute">grab</span>:<span class="hljs-literal">true</span>)
+        .broadcastEvent = <span class="hljs-function">-&gt;</span> done()
+      component.mousedownListener {}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Drag listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#dragListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .dragListener()
+        .should.be.equal component</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Grab listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#grabListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .grabListener()
+        .should.be.equal component</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Release listener</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  describe <span class="hljs-string">'#releaseListener'</span>, <span class="hljs-function">-&gt;</span>
+    it <span class="hljs-string">'should return the component'</span>, <span class="hljs-function">-&gt;</span>
+      (component = <span class="hljs-keyword">new</span> Component)
+        .releaseListener()
+        .should.be.equal component</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
